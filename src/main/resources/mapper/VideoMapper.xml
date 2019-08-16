@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.myplay.mapper.VideoMapper">
+  <resultMap id="BaseResultMap" type="com.myplay.model.Video">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="photourl" jdbcType="VARCHAR" property="photourl" />
+    <result column="videourl" jdbcType="VARCHAR" property="videourl" />
+    <result column="collectioncount" jdbcType="INTEGER" property="collectioncount" />
+    <result column="userid" jdbcType="INTEGER" property="userid" />
+    <result column="categoryid" jdbcType="INTEGER" property="categoryid" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="createTime" jdbcType="TIMESTAMP" property="createtime" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from video
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.myplay.model.Video">
+    insert into video (id, title, photourl, 
+      videourl, collectioncount, userid, 
+      categoryid, status, createTime
+      )
+    values (#{id,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{photourl,jdbcType=VARCHAR}, 
+      #{videourl,jdbcType=VARCHAR}, #{collectioncount,jdbcType=INTEGER}, #{userid,jdbcType=INTEGER}, 
+      #{categoryid,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, #{createtime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.myplay.model.Video">
+    update video
+    set title = #{title,jdbcType=VARCHAR},
+      photourl = #{photourl,jdbcType=VARCHAR},
+      videourl = #{videourl,jdbcType=VARCHAR},
+      collectioncount = #{collectioncount,jdbcType=INTEGER},
+      userid = #{userid,jdbcType=INTEGER},
+      categoryid = #{categoryid,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER},
+      createTime = #{createtime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, title, photourl, videourl, collectioncount, userid, categoryid, status, 
+    createTime
+    from video
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, title, photourl, videourl, collectioncount, userid, categoryid, status, 
+    createTime
+    from video
+  </select>
+</mapper>
