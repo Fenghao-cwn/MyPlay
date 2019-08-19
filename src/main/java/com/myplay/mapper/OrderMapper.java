@@ -1,8 +1,7 @@
 package com.myplay.mapper;
 
-import java.util.List;
-
 import com.myplay.model.Order;
+import java.util.List;
 
 public interface OrderMapper {
     int deleteByPrimaryKey(Integer id);

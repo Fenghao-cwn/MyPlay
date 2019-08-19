@@ -1,8 +1,7 @@
 package com.myplay.mapper;
 
-import java.util.List;
-
 import com.myplay.model.Follow;
+import java.util.List;
 
 public interface FollowMapper {
     int deleteByPrimaryKey(Integer id);

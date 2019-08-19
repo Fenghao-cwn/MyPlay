@@ -1,8 +1,7 @@
 package com.myplay.mapper;
 
-import java.util.List;
-
 import com.myplay.model.DynamicComment;
+import java.util.List;
 
 public interface DynamicCommentMapper {
     int deleteByPrimaryKey(Integer id);

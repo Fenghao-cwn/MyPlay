@@ -1,8 +1,7 @@
 package com.myplay.mapper;
 
-import java.util.List;
-
 import com.myplay.model.GoodsType;
+import java.util.List;
 
 public interface GoodsTypeMapper {
     int deleteByPrimaryKey(Integer id);

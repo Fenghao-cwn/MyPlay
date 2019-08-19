@@ -1,8 +1,7 @@
 package com.myplay.mapper;
 
-import java.util.List;
-
 import com.myplay.model.Admin;
+import java.util.List;
 
 public interface AdminMapper {
     int deleteByPrimaryKey(Integer adminId);

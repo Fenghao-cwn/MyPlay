@@ -1,8 +1,7 @@
 package com.myplay.mapper;
 
-import java.util.List;
-
 import com.myplay.model.Dynamic;
+import java.util.List;
 
 public interface DynamicMapper {
     int deleteByPrimaryKey(Integer id);

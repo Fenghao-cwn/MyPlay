@@ -8,6 +8,7 @@
     <result column="signature" jdbcType="VARCHAR" property="signature" />
     <result column="photourl" jdbcType="VARCHAR" property="photourl" />
     <result column="phone" jdbcType="VARCHAR" property="phone" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
   </resultMap>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from user
@@ -15,11 +16,11 @@
   </delete>
   <insert id="insert" parameterType="com.myplay.model.User">
     insert into user (id, name, sex, 
-      signature, photourl, phone
-      )
+      signature, photourl, phone, 
+      password)
     values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{sex,jdbcType=VARCHAR}, 
-      #{signature,jdbcType=VARCHAR}, #{photourl,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}
-      )
+      #{signature,jdbcType=VARCHAR}, #{photourl,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, 
+      #{password,jdbcType=VARCHAR})
   </insert>
   <update id="updateByPrimaryKey" parameterType="com.myplay.model.User">
     update user
@@ -27,16 +28,17 @@
       sex = #{sex,jdbcType=VARCHAR},
       signature = #{signature,jdbcType=VARCHAR},
       photourl = #{photourl,jdbcType=VARCHAR},
-      phone = #{phone,jdbcType=VARCHAR}
+      phone = #{phone,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select id, name, sex, signature, photourl, phone
+    select id, name, sex, signature, photourl, phone, password
     from user
     where id = #{id,jdbcType=INTEGER}
   </select>
   <select id="selectAll" resultMap="BaseResultMap">
-    select id, name, sex, signature, photourl, phone
+    select id, name, sex, signature, photourl, phone, password
     from user
   </select>
 </mapper>

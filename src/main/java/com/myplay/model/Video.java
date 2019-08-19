@@ -21,6 +21,12 @@ public class Video {
 
     private Date createtime;
 
+    private Integer showcount;
+
+    private String vediodetail;
+
+    private Float average;
+
     public Integer getId() {
         return id;
     }
@@ -91,5 +97,29 @@ public class Video {
 
     public void setCreatetime(Date createtime) {
         this.createtime = createtime;
+    }
+
+    public Integer getShowcount() {
+        return showcount;
+    }
+
+    public void setShowcount(Integer showcount) {
+        this.showcount = showcount;
+    }
+
+    public String getVediodetail() {
+        return vediodetail;
+    }
+
+    public void setVediodetail(String vediodetail) {
+        this.vediodetail = vediodetail == null ? null : vediodetail.trim();
+    }
+
+    public Float getAverage() {
+        return average;
+    }
+
+    public void setAverage(Float average) {
+        this.average = average;
     }
 }

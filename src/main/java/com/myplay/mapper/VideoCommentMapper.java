@@ -1,8 +1,7 @@
 package com.myplay.mapper;
 
-import java.util.List;
-
 import com.myplay.model.VideoComment;
+import java.util.List;
 
 public interface VideoCommentMapper {
     int deleteByPrimaryKey(Integer id);
