@@ -12,9 +12,8 @@
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.myplay.model.VideoComment">
-    insert into video_comment (id, content, uid, 
-      vid)
-    values (#{id,jdbcType=INTEGER}, #{content,jdbcType=VARCHAR}, #{uid,jdbcType=INTEGER}, 
+    insert into video_comment (content,uid,vid)
+    values (#{content,jdbcType=VARCHAR}, #{uid,jdbcType=INTEGER}, 
       #{vid,jdbcType=INTEGER})
   </insert>
   <update id="updateByPrimaryKey" parameterType="com.myplay.model.VideoComment">
