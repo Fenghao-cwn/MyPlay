@@ -20,10 +20,9 @@ public class VideoShowController {
 	
 	@GetMapping("/sendcomment")
 	public String sendComment(VideoComment comment,HttpSession session){
+		User user = (User) session.getAttribute("user");
 		comment.setUid(1);
 		int flag = service.insert(comment);
-		User user = (User) session.getAttribute("user");
-		
 		if(flag!=0){
 			return "评论成功";
 		}else{
