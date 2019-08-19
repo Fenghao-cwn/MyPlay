@@ -3,6 +3,8 @@ package com.myplay.mapper;
 import com.myplay.model.GoodsType;
 import java.util.List;
 
+import org.apache.ibatis.annotations.Mapper;
+@Mapper
 public interface GoodsTypeMapper {
     int deleteByPrimaryKey(Integer id);
 

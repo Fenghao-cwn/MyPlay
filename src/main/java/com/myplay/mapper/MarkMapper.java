@@ -2,8 +2,10 @@ package com.myplay.mapper;
 
 import java.util.List;
 
-import com.myplay.model.Mark;
+import org.apache.ibatis.annotations.Mapper;
 
+import com.myplay.model.Mark;
+@Mapper
 public interface MarkMapper {
     int deleteByPrimaryKey(Integer id);
 
