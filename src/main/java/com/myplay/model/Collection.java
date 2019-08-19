@@ -1,4 +1,4 @@
-package com.myplay.pojo;
+package com.myplay.model;
 
 public class Collection {
     private Integer id;

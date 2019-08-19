@@ -2,7 +2,7 @@ package com.myplay.mapper;
 
 import java.util.List;
 
-import com.myplay.pojo.Message;
+import com.myplay.model.Message;
 
 public interface MessageMapper {
     int deleteByPrimaryKey(Integer id);

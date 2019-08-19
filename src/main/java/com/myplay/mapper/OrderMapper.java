@@ -2,7 +2,7 @@ package com.myplay.mapper;
 
 import java.util.List;
 
-import com.myplay.pojo.Order;
+import com.myplay.model.Order;
 
 public interface OrderMapper {
     int deleteByPrimaryKey(Integer id);

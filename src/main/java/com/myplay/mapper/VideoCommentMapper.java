@@ -2,7 +2,7 @@ package com.myplay.mapper;
 
 import java.util.List;
 
-import com.myplay.pojo.VideoComment;
+import com.myplay.model.VideoComment;
 
 public interface VideoCommentMapper {
     int deleteByPrimaryKey(Integer id);

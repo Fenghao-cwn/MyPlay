@@ -2,7 +2,7 @@ package com.myplay.mapper;
 
 import java.util.List;
 
-import com.myplay.pojo.Video;
+import com.myplay.model.Video;
 
 public interface VideoMapper {
     int deleteByPrimaryKey(Integer id);

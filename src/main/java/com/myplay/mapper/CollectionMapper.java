@@ -2,7 +2,7 @@ package com.myplay.mapper;
 
 import java.util.List;
 
-import com.myplay.pojo.Collection;
+import com.myplay.model.Collection;
 
 public interface CollectionMapper {
     int deleteByPrimaryKey(Integer id);

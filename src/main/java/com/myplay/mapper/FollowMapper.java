@@ -2,7 +2,7 @@ package com.myplay.mapper;
 
 import java.util.List;
 
-import com.myplay.pojo.Follow;
+import com.myplay.model.Follow;
 
 public interface FollowMapper {
     int deleteByPrimaryKey(Integer id);

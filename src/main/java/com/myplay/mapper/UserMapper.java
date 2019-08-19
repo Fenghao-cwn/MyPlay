@@ -2,7 +2,7 @@ package com.myplay.mapper;
 
 import java.util.List;
 
-import com.myplay.pojo.User;
+import com.myplay.model.User;
 
 public interface UserMapper {
     int deleteByPrimaryKey(Integer id);

@@ -2,7 +2,7 @@ package com.myplay.mapper;
 
 import java.util.List;
 
-import com.myplay.pojo.Dynamic;
+import com.myplay.model.Dynamic;
 
 public interface DynamicMapper {
     int deleteByPrimaryKey(Integer id);

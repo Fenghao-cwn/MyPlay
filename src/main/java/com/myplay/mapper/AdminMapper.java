@@ -2,7 +2,7 @@ package com.myplay.mapper;
 
 import java.util.List;
 
-import com.myplay.pojo.Admin;
+import com.myplay.model.Admin;
 
 public interface AdminMapper {
     int deleteByPrimaryKey(Integer adminId);
