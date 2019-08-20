@@ -2,7 +2,10 @@ package com.myplay.service;
 
 import java.util.List;
 
+import com.myplay.model.Follow;
+import com.myplay.model.User;
 import com.myplay.model.UserComment;
+import com.myplay.model.Video;
 import com.myplay.model.VideoComment;
 
 public interface IVideoShowService {
@@ -11,4 +14,7 @@ public interface IVideoShowService {
 	List<UserComment> selectAllComment();
 	List<UserComment> selectNewComment();
 	List<UserComment> getMyComment(int id);
+	Video loadVideo(int id);
+	User loadAuthor(Integer id);
+	int follow(Follow follow);
 }

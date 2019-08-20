@@ -11,10 +11,8 @@
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.myplay.model.Follow">
-    insert into follow (id, to_uid, from_uid
-      )
-    values (#{id,jdbcType=INTEGER}, #{toUid,jdbcType=INTEGER}, #{fromUid,jdbcType=INTEGER}
-      )
+    insert into follow (to_uid, from_uid)
+    values (#{toUid,jdbcType=INTEGER}, #{fromUid,jdbcType=INTEGER})
   </insert>
   <update id="updateByPrimaryKey" parameterType="com.myplay.model.Follow">
     update follow

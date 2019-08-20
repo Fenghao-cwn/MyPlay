@@ -9,15 +9,20 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.myplay.model.Follow;
 import com.myplay.model.User;
 import com.myplay.model.UserComment;
+import com.myplay.model.Video;
 import com.myplay.model.VideoComment;
 import com.myplay.service.IVideoShowService;
 
 @CrossOrigin
 @RestController
+@RequestMapping("/VideoShow")
 public class VideoShowController {
 
 	@Autowired
@@ -28,7 +33,7 @@ public class VideoShowController {
 		SimpleDateFormat s = new SimpleDateFormat("yyyy-MM-dd HH24:mm:ss");
 		String strDate = s.format(new Date());
 		User user = (User) session.getAttribute("user");
-		comment.setUid(1);
+		comment.setUid(user.getId());
 		comment.setCreattime(strDate);
 		int flag = service.insert(comment);
 		if(flag!=0){
@@ -52,6 +57,31 @@ public class VideoShowController {
 	@GetMapping("/getMyComment")
 	public List<UserComment> getMyComment(HttpSession session){
 		User user =(User) session.getAttribute("user");
-		return service.getMyComment(1);
+		return service.getMyComment(user.getId());
+	}
+	
+	@PostMapping("/loadVideo")
+	public Video loadVideo(int id){
+		return service.loadVideo(id);
+	}
+	
+	@PostMapping("/loadAuthor")
+	public User loadAuthor(Integer id){
+		return service.loadAuthor(id);
+	}
+	
+	@PostMapping("/follow")
+	public String follow(Integer toUid,HttpSession session){
+		System.out.println(session.getId());
+		User user = (User) session.getAttribute("user");
+		Follow follow = new Follow();
+		follow.setFromUid(user.getId());
+		follow.setToUid(toUid);
+		if(service.follow(follow)!=0){
+			return "关注成功";
+		}else {
+			return "您已关注，请勿重新登录";
+		}
+		
 	}
 }
