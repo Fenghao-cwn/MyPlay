@@ -1,5 +1,7 @@
 package com.myplay.model;
 
+import java.util.Date;
+
 public class VideoComment {
     private Integer id;
 
@@ -8,6 +10,8 @@ public class VideoComment {
     private Integer uid;
 
     private Integer vid;
+
+    private String creattime;
 
     public Integer getId() {
         return id;
@@ -39,5 +43,13 @@ public class VideoComment {
 
     public void setVid(Integer vid) {
         this.vid = vid;
+    }
+
+    public String getCreattime() {
+        return creattime;
+    }
+
+    public void setCreattime(String creattime) {
+        this.creattime = creattime;
     }
 }

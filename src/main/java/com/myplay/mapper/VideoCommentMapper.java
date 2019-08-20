@@ -1,5 +1,6 @@
 package com.myplay.mapper;
 
+import com.myplay.model.UserComment;
 import com.myplay.model.VideoComment;
 import java.util.List;
 
@@ -13,7 +14,11 @@ public interface VideoCommentMapper {
 
     VideoComment selectByPrimaryKey(Integer id);
 
-    List<VideoComment> selectAll();
+    List<UserComment> selectAll();
 
     int updateByPrimaryKey(VideoComment record);
+
+	List<UserComment> selectNewComment();
+
+	List<UserComment> getMyComment(int id);
 }
