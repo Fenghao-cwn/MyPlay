@@ -18,8 +18,8 @@
     insert into user (id, name, sex, 
       signature, photourl, phone, 
       password)
-    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{sex,jdbcType=VARCHAR}, 
-      #{signature,jdbcType=VARCHAR}, #{photourl,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, 
+    values (null, #{name,jdbcType=VARCHAR}, null, null, 
+    null, #{phone,jdbcType=VARCHAR}, 
       #{password,jdbcType=VARCHAR})
   </insert>
   <update id="updateByPrimaryKey" parameterType="com.myplay.model.User">
