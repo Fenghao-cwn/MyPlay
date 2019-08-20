@@ -6,9 +6,9 @@ import java.io.PrintWriter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
+
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -35,8 +35,7 @@ public class UeditorController {
 	}
 	@RequestMapping("/contents")
 	public void content(String content) {
-		System.out.println("是否");
-		System.out.println(content);
+		
 		
 	}
 }
