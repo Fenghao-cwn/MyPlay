@@ -44,6 +44,10 @@ public class VideoController {
 				SimpleDateFormat s = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 				String strDate = s.format(new Date());
 				video.setCreatetime(strDate);
+				File path = new File("D:/upload");
+				if(!path.exists()){
+					path.mkdirs();
+				}
 				for(MultipartFile file:files){
 					
 					String name = file.getOriginalFilename();
@@ -51,12 +55,12 @@ public class VideoController {
 					if(type.equals(".png")||type.equals(".gif")||type.equals(".jpeg")||type.equals(".jpg")){
 						String realname=UUID.randomUUID().toString()+type;
 						video.setPhotourl("http://localhost/"+realname);
-						File newFile=new File("D:/upload/"+realname);
+						File newFile=new File(path,realname);
 						file.transferTo(newFile);
 					}else{
 						String realname=UUID.randomUUID().toString()+type;
 						video.setVideourl("http://localhost/"+realname);
-						File newFile=new File("D:/upload/"+realname);
+						File newFile=new File(path,realname);
 						file.transferTo(newFile);
 					}	
 				}
