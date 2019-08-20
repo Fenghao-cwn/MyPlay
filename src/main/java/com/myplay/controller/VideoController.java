@@ -26,7 +26,7 @@ import com.myplay.service.IVideoService;
 
 @CrossOrigin
 @RestController
-@RequestMapping("/Personal")
+@RequestMapping("/Video")
 public class VideoController {
 	@Autowired
 	private IVideoService iVideoService;
