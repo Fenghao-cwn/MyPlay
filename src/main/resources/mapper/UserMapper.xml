@@ -41,4 +41,10 @@
     select id, name, sex, signature, photourl, phone, password
     from user
   </select>
+  <select id="login" parameterType="com.myplay.model.User" resultMap="BaseResultMap">
+    select id, name, sex, signature, photourl, phone, password
+    from user
+    where phone = #{phone,jdbcType=VARCHAR}
+    	and password = #{password,jdbcType=VARCHAR}
+  </select>
 </mapper>
