@@ -11,7 +11,7 @@ public class Message {
 
     private String content;
 
-    private Date createdate;
+    private String createdate;
 
     private Integer status;
 
@@ -47,11 +47,11 @@ public class Message {
         this.content = content == null ? null : content.trim();
     }
 
-    public Date getCreatedate() {
+    public String getCreatedate() {
         return createdate;
     }
 
-    public void setCreatedate(Date createdate) {
+    public void setCreatedate(String createdate) {
         this.createdate = createdate;
     }
 

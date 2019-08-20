@@ -11,7 +11,7 @@ public class Order {
 
     private Byte status;
 
-    private Date time;
+    private String time;
 
     private Integer uid;
 
@@ -51,11 +51,11 @@ public class Order {
         this.status = status;
     }
 
-    public Date getTime() {
+    public String getTime() {
         return time;
     }
 
-    public void setTime(Date time) {
+    public void setTime(String time) {
         this.time = time;
     }
 

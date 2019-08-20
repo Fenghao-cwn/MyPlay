@@ -7,7 +7,7 @@ public class Dynamic {
 
     private String title;
 
-    private Date createtime;
+    private String createtime;
 
     private Integer uid;
 
@@ -29,11 +29,11 @@ public class Dynamic {
         this.title = title == null ? null : title.trim();
     }
 
-    public Date getCreatetime() {
+    public String getCreatetime() {
         return createtime;
     }
 
-    public void setCreatetime(Date createtime) {
+    public void setCreatetime(String createtime) {
         this.createtime = createtime;
     }
 
