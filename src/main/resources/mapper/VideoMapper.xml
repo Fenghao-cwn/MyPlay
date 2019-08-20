@@ -21,14 +21,14 @@
   </delete>
   <insert id="insert" parameterType="com.myplay.model.Video">
     insert into video (id, title, photourl, 
-      videourl, collectioncount, userid, 
-      categoryid, status, createTime, 
-      showcount, vediodetail, average
+      videourl, userid, 
+      categoryid, createTime, 
+    	vediodetail
       )
-    values (#{id,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{photourl,jdbcType=VARCHAR}, 
-      #{videourl,jdbcType=VARCHAR}, #{collectioncount,jdbcType=INTEGER}, #{userid,jdbcType=INTEGER}, 
-      #{categoryid,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, #{createtime,jdbcType=TIMESTAMP}, 
-      #{showcount,jdbcType=INTEGER}, #{vediodetail,jdbcType=VARCHAR}, #{average,jdbcType=REAL}
+    values (null, #{title,jdbcType=VARCHAR}, #{photourl,jdbcType=VARCHAR}, 
+      #{videourl,jdbcType=VARCHAR}, #{userid,jdbcType=INTEGER}, 
+      #{categoryid,jdbcType=INTEGER},  #{createtime,jdbcType=TIMESTAMP}, 
+      #{vediodetail,jdbcType=VARCHAR}
       )
   </insert>
   <update id="updateByPrimaryKey" parameterType="com.myplay.model.Video">

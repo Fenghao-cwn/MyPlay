@@ -19,7 +19,7 @@ public class Video {
 
     private Integer status;
 
-    private Date createtime;
+    private String createtime;
 
     private Integer showcount;
 
@@ -91,11 +91,11 @@ public class Video {
         this.status = status;
     }
 
-    public Date getCreatetime() {
+    public String getCreatetime() {
         return createtime;
     }
 
-    public void setCreatetime(Date createtime) {
+    public void setCreatetime(String createtime) {
         this.createtime = createtime;
     }
 
