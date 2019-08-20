@@ -27,7 +27,7 @@
     from category
     where id = #{id,jdbcType=INTEGER}
   </select>
-  <select id="selectAll" resultMap="BaseResultMap">
+  <select id="selectAll" resultType="com.myplay.model.Category" >
     select id, seq, name
     from category
   </select>

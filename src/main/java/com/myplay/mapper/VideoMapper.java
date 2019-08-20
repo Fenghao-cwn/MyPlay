@@ -15,4 +15,5 @@ public interface VideoMapper {
     List<Video> selectAll();
 
     int updateByPrimaryKey(Video record);
+	List<Video> selectVideosByType(Integer categoryid);
 }

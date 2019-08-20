@@ -52,6 +52,12 @@
     from video
     where id = #{id,jdbcType=INTEGER}
   </select>
+  <select id="selectVideosByType" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, title, photourl, videourl, collectioncount, userid, categoryid, status, 
+    createTime, showcount, vediodetail, average
+    from video
+    where categoryid = #{categoryid,jdbcType=INTEGER}
+  </select>
   <select id="selectAll" resultMap="BaseResultMap">
     select id, title, photourl, videourl, collectioncount, userid, categoryid, status, 
     createTime, showcount, vediodetail, average

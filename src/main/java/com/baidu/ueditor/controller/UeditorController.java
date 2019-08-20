@@ -23,7 +23,6 @@ public class UeditorController {
 		response.setContentType("application/json");
 		
 		String rootPath = request.getSession().getServletContext().getRealPath("/");
-		System.out.println(rootPath);
 		try {
 			String exec = new ActionEnter(request, rootPath).exec();
 			PrintWriter writer = response.getWriter();
