@@ -37,4 +37,10 @@
   	delete from collection
     	where uid = #{uid,jdbcType=INTEGER} and vid = #{vid,jdbcType=INTEGER}
   </delete>
+   <!--  根据uid获得该用户所有收藏-->
+   <select id="selectByUserId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, uid, vid
+    from collection
+    where uid = #{uid,jdbcType=INTEGER}
+  </select>
 </mapper>

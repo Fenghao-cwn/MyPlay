@@ -6,8 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.myplay.mapper.CategoryMapper;
+import com.myplay.mapper.CollectionMapper;
 import com.myplay.mapper.VideoMapper;
 import com.myplay.model.Category;
+import com.myplay.model.Collection;
+import com.myplay.model.MyCollection;
 import com.myplay.model.Video;
 @Service
 public class VideoServiceImpl implements IVideoService{
@@ -16,10 +19,14 @@ public class VideoServiceImpl implements IVideoService{
 	private CategoryMapper categoryMapper;
 	@Autowired
 	private VideoMapper videoMapper;
+	@Autowired
+	private CollectionMapper collectionMapper;
+	
+	
 	@Override
-	public int deleteByPrimaryKey(Integer id) {
-		// TODO Auto-generated method stub
-		return 0;
+	//删除视频
+	public int deleteByPrimaryKey(Integer id) {	
+		return videoMapper.deleteByPrimaryKey(id);
 	}
 
 	@Override
@@ -30,7 +37,7 @@ public class VideoServiceImpl implements IVideoService{
 	@Override
 	public Video selectByPrimaryKey(Integer id) {
 		// TODO Auto-generated method stub
-		return null;
+		return videoMapper.selectByPrimaryKey(id);
 	}
 
 	@Override
@@ -38,16 +45,34 @@ public class VideoServiceImpl implements IVideoService{
 		// TODO Auto-generated method stub
 		return 0;
 	}
-
+	
 	@Override
 	public List<Video> selectAllVideo() {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
+	//查找所以视频类型
 	@Override
 	public List<Category> selectAllCategory() {
 		return categoryMapper.selectAll();
 	}
+	@Override
+	public List<Video> selectVideosByUid(Integer userid) {
+		
+		return videoMapper.selectVideosByUid(userid);
+	}
+	//查询用户所以收藏
+	@Override
+	public List<MyCollection> selectMyCollection(Integer vid,Integer aid) {
+		return videoMapper.selectMyCollection(vid, aid);
+	}
+
+	@Override
+	public List<Collection> selectUserCollection(Integer userid) {
+		// TODO Auto-generated method stub
+		return collectionMapper.selectByUserId(userid);
+	}
+	
+	
 
 }

@@ -20,4 +20,6 @@ public interface CollectionMapper {
 	int loadCollection(@Param("vid")Integer vid,@Param("userid") Integer userid);
 
 	int deleteCollection(Collection collection);
+	 //根据用户id获得该用户所以收藏
+    List<Collection> selectByUserId(Integer uid);
 }

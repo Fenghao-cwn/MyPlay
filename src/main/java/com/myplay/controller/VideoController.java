@@ -39,6 +39,7 @@ public class VideoController {
 	public void uploadVideo(@RequestParam("file") MultipartFile[] files,Video video,HttpSession session){
 		
 			try {
+				
 				User user=(User) session.getAttribute("user");				
 				video.setUserid(user.getId());
 				SimpleDateFormat s = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -76,10 +77,32 @@ public class VideoController {
 	 * @return
 	 */
 	@GetMapping("/selectAllCategory")
-	public List<Category> selectAllCategory(){
-		
+	public List<Category> selectAllCategory(HttpSession session){
 		return iVideoService.selectAllCategory();
 	}
+	/**
+	 * 得到给用户的所有视频
+	 * @return
+	 */
+	@GetMapping("/selectVideosByUid")
+	public List<Video> selectVideosByUid(HttpSession session){
+		User user=(User) session.getAttribute("user");
+		return  iVideoService.selectVideosByUid(user.getId());
+	}
+	/**
+	 * 删除视频
+	 * @param id  视频id
+	 * @param session
+	 * @return
+	 */
+	@GetMapping("/deleterVideoByid")
+	public List<Video> deleterVideoByid(Integer id,HttpSession session){
+		 iVideoService.deleteByPrimaryKey(id);
+		 User user=(User) session.getAttribute("user");
+		return  iVideoService.selectVideosByUid(user.getId());
+		 
+	}
+	
 	
 	
 }
