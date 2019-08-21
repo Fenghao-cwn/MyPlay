@@ -1,5 +1,6 @@
 package com.myplay.mapper;
 
+import com.myplay.model.LetterBox;
 import com.myplay.model.Message;
 import java.util.List;
 
@@ -15,4 +16,10 @@ public interface MessageMapper {
     List<Message> selectAll();
 
     int updateByPrimaryKey(Message record);
+    
+    //收件箱
+    List<LetterBox> getInboxs(Integer id);
+    
+    //发件箱
+    List<LetterBox> getOutboxs(Integer id);
 }
