@@ -29,4 +29,12 @@
     select id, uid, vid
     from collection
   </select>
+  <select id="loadCollection" resultType="int">
+  	 select id, uid, vid from collection where uid=#{userid} and vid=#{vid}
+  </select>
+  
+  <delete id="deleteCollection">
+  	delete from collection
+    	where uid = #{uid,jdbcType=INTEGER} and vid = #{vid,jdbcType=INTEGER}
+  </delete>
 </mapper>

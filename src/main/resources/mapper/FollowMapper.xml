@@ -29,4 +29,12 @@
     select id, to_uid, from_uid
     from follow
   </select>
+  <select id="loadFollow" resultType="int">
+  	select id,to_uid,from_uid from follow where from_uid=#{fromUid} and to_uid=#{toUid}
+  </select>
+  
+  <delete id="deleteFollow">
+  	 delete from follow
+    where to_uid = #{toUid,jdbcType=INTEGER} and from_uid=#{fromUid,jdbcType=INTEGER}
+  </delete>
 </mapper>
