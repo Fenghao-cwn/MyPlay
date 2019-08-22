@@ -39,4 +39,14 @@
     select id, name, picture, price, introduce, type_id
     from goods
   </select>
+  <select id="searchByShopCategory" resultMap="BaseResultMap" parameterType="int">
+    select id, name, picture, price, introduce, type_id
+    from goods
+    where type_id = #{typeId,jdbcType=INTEGER}
+  </select>
+  <select id="searchShopByWord" resultMap="BaseResultMap" parameterType="string">
+    select id, name, picture, price, introduce, type_id
+    from goods
+    where name like "%"#{name}"%"
+  </select>
 </mapper>

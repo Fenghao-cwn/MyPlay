@@ -13,6 +13,7 @@ public interface GoodsTypeMapper {
     GoodsType selectByPrimaryKey(Integer id);
 
     List<GoodsType> selectType();
-
+    
+    List<GoodsType> selectAll();
     int updateByPrimaryKey(GoodsType record);
 }

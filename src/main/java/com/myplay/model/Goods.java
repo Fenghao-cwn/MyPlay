@@ -60,4 +60,15 @@ public class Goods {
     public void setTypeId(Integer typeId) {
         this.typeId = typeId;
     }
+
+	public Goods(Integer id, String name, String picture, Float price, String introduce, Integer typeId) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.picture = picture;
+		this.price = price;
+		this.introduce = introduce;
+		this.typeId = typeId;
+	}
+    
 }
