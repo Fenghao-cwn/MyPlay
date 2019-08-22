@@ -10,7 +10,7 @@ public interface IPersonalCenterService {
 	    User selectByPrimaryKey(Integer id);
 
 	    List<User> selectAll();
+	    	
 	    
-
 	    int updateByPrimaryKey(User record);
 }

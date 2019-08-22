@@ -58,7 +58,7 @@
     from video
     where categoryid = #{categoryid,jdbcType=INTEGER}
   </select>
-  <!-- 通过userid查找所以视频 -->
+ <!-- 通过userid查找所以视频 -->
   <select id="selectVideosByUid" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select id, title, photourl, videourl, collectioncount,userid, categoryid, status, 
     createTime, showcount, vediodetail, average
@@ -67,9 +67,9 @@
   </select>
   <!--我的收藏查询实现  -->
   <select id="selectMyCollection" resultType="com.myplay.model.MyCollection">
-  	select v.id vid,v.userid aid,title,v.photourl vphoto,videourl,collectioncount,categoryid,status,createtime,showcount,vediodetail,a.photourl,a.name,a.signature
-	from video v, user a
-	where v.id=#{vid} and v.userid=#{aid} and v.userid=a.id
+  	select c.id cid, v.id vid,v.userid aid,title,v.photourl vphoto,videourl,collectioncount,categoryid,status,createtime,showcount,vediodetail,a.photourl,a.name,a.signature
+	from video v, user a,collection c
+	where v.id=#{vid} and v.userid=#{aid} and v.userid=a.id and c.vid=v.id
   </select>
   <select id="selectAll" resultMap="BaseResultMap">
     select id, title, photourl, videourl, collectioncount, userid, categoryid, status, 

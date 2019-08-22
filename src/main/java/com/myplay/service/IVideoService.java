@@ -22,6 +22,8 @@ public interface IVideoService {
     List<MyCollection>selectMyCollection(Integer vid,Integer vuid);
     //查找给用户的所有收藏集合
     List<Collection> selectUserCollection (Integer userid);
+    //删除收藏
+    int deleteCollectionById(Integer id);
     
     int updateByPrimaryKey(Video record);
     

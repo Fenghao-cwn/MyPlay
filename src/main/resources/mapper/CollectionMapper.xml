@@ -6,7 +6,7 @@
     <result column="uid" jdbcType="INTEGER" property="uid" />
     <result column="vid" jdbcType="INTEGER" property="vid" />
   </resultMap>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+  <delete id="deleteCollectionById" parameterType="java.lang.Integer">
     delete from collection
     where id = #{id,jdbcType=INTEGER}
   </delete>

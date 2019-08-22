@@ -72,6 +72,14 @@ public class VideoServiceImpl implements IVideoService{
 		// TODO Auto-generated method stub
 		return collectionMapper.selectByUserId(userid);
 	}
+	//删除收藏
+	@Override
+	public int deleteCollectionById(Integer id) {
+		// TODO Auto-generated method stub
+		return collectionMapper.deleteCollectionById(id);
+	}
+	
+	
 	
 	
 
