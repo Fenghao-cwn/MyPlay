@@ -35,4 +35,9 @@ public class MessageController {
 		User user = (User)session.getAttribute("user");
 		return iMessageService.getOutboxs(user.getId());
 	}
+	
+	@GetMapping("/getMessageById")
+	public LetterBox getMessageById(Integer id){
+		return iMessageService.getMessageById(id);
+	}
 }

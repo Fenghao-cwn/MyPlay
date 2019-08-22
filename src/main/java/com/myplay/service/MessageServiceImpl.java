@@ -27,4 +27,11 @@ public class MessageServiceImpl implements IMessageService{
 		return messageMapper.getOutboxs(id);
 	}
 
+
+	@Override
+	public LetterBox getMessageById(Integer id) {
+		// TODO Auto-generated method stub
+		return messageMapper.getMessageById(id);
+	}
+
 }

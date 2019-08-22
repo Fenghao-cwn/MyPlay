@@ -14,7 +14,9 @@ public class LetterBox {
 
     private Integer status;//状态
     
-    private String name;//昵称
+    private String fromname;//发件人昵称
+    
+    private String toname;//收件人昵称
     
     private String photourl;//头像
 
@@ -66,12 +68,20 @@ public class LetterBox {
 		this.status = status;
 	}
 
-	public String getName() {
-		return name;
+	public String getFromname() {
+		return fromname;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setFromname(String fromname) {
+		this.fromname = fromname;
+	}
+
+	public String getToname() {
+		return toname;
+	}
+
+	public void setToname(String toname) {
+		this.toname = toname;
 	}
 
 	public String getPhotourl() {

@@ -22,4 +22,7 @@ public interface MessageMapper {
     
     //发件箱
     List<LetterBox> getOutboxs(Integer id);
+ 
+    //获取信息详情
+    LetterBox getMessageById(Integer id);
 }

@@ -10,4 +10,6 @@ public interface IMessageService {
 	List<LetterBox> getInboxs(Integer id);
 	//发件箱
 	List<LetterBox> getOutboxs(Integer id);
+	//获取信息详情
+	LetterBox getMessageById(Integer id);
 }

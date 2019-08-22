@@ -40,18 +40,23 @@
     from message
   </select>
    <select id="getInboxs"  resultType="com.myplay.model.LetterBox">
-     select  message.id ,from_uid, message.to_uid,content,createdate,status,s.name,s.photourl
+     select  message.id,from_uid, message.to_uid,content,createdate,status,s.name fromname,s.photourl
 	from message,user u,user s 
 	where to_uid = #{id} 
 	and u.id = #{id}
 	and from_uid = s.id
   </select>
   <select id="getOutboxs"  resultType="com.myplay.model.LetterBox">
-     select  message.id mid ,from_uid, message.to_uid,content,createdate,status,s.name,s.photourl
+     select  message.id,from_uid, message.to_uid,content,createdate,status,s.name toname,s.photourl
 	from message,user u,user s 
 	where from_uid = #{id} 
 	and u.id = #{id}
 	and to_uid = s.id
   </select>
+   <select id="getMessageById"  resultType="com.myplay.model.LetterBox">
+     select  content,u.name fromname ,s.name toname from message,user u,user s
+	where message.id = #{id} and from_uid = u.id and to_uid = s.id
+  </select>
+ 
   
 </mapper>
