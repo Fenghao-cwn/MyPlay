@@ -1,7 +1,5 @@
 package com.myplay.model;
 
-import java.util.Date;
-
 public class Video {
     private Integer id;
 

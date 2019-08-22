@@ -5,6 +5,7 @@ import com.myplay.model.VideoComment;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 @Mapper
 public interface VideoCommentMapper {
@@ -18,7 +19,9 @@ public interface VideoCommentMapper {
 
     int updateByPrimaryKey(VideoComment record);
 
-	List<UserComment> selectNewComment();
+	List<UserComment> selectNewComment(Integer vid);
 
-	List<UserComment> getMyComment(int id);
+	List<UserComment> getMyComment(@Param("id")int id,@Param("vid") Integer vid);
+
+	List<UserComment> selectAllCommentsByVid(Integer vid);
 }

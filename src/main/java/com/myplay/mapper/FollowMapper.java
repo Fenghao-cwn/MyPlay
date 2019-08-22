@@ -7,17 +7,17 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 @Mapper
 public interface FollowMapper {
-    int deleteByPrimaryKey(Integer id);
+	Integer deleteByPrimaryKey(Integer id);
 
-    int insert(Follow record);
+    Integer insert(Follow record);
 
     Follow selectByPrimaryKey(Integer id);
 
     List<Follow> selectAll();
 
-    int updateByPrimaryKey(Follow record);
+    Integer updateByPrimaryKey(Follow record);
 
-	int loadFollow(@Param("toUid") Integer toUid,@Param("fromUid") Integer fromUid);
+    Integer loadFollow(@Param("toUid") Integer toUid,@Param("fromUid") Integer fromUid);
 
-	int deleteFollow(Follow follow);
+	Integer deleteFollow(Follow follow);
 }

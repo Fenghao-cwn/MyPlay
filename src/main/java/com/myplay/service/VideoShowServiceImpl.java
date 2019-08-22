@@ -15,6 +15,7 @@ import com.myplay.model.Follow;
 import com.myplay.model.User;
 import com.myplay.model.UserComment;
 import com.myplay.model.Video;
+import com.myplay.model.VideoAuthor;
 import com.myplay.model.VideoComment;
 
 @Service
@@ -41,18 +42,18 @@ public class VideoShowServiceImpl implements IVideoShowService{
 	}
 
 	@Override
-	public List<UserComment> selectAllComment() {
-		return videoCommentMapper.selectAll();
+	public List<UserComment> selectAllComment(Integer vid) {
+		return videoCommentMapper.selectAllCommentsByVid(vid);
 	}
 
 	@Override
-	public List<UserComment> selectNewComment() {
-		return videoCommentMapper.selectNewComment();
+	public List<UserComment> selectNewComment(Integer vid) {
+		return videoCommentMapper.selectNewComment(vid);
 	}
 
 	@Override
-	public List<UserComment> getMyComment(int id) {
-		return videoCommentMapper.getMyComment(id);
+	public List<UserComment> getMyComment(int id,Integer vid) {
+		return videoCommentMapper.getMyComment(id,vid);
 	}
 
 	@Override
@@ -79,8 +80,8 @@ public class VideoShowServiceImpl implements IVideoShowService{
 	public String loadFollowAndCollection(Integer vid, Integer fromUid) {
 		Video video =videomapper.selectByPrimaryKey(vid);
 		Integer toUid=video.getUserid();
-		if (followmapper.loadFollow(toUid,fromUid)!=0) {
-			if (collectionMapper.loadCollection(vid,fromUid)!=0) {
+		if (followmapper.loadFollow(toUid,fromUid)!=null) {
+			if (collectionMapper.loadCollection(vid,fromUid)!=null) {
 				return "加载关注收藏成功";
 			}else {
 				return "加载关注成功";
@@ -102,6 +103,11 @@ public class VideoShowServiceImpl implements IVideoShowService{
 	@Override
 	public int deleteCollection(Collection collection) {
 		return collectionMapper.deleteCollection(collection);
+	}
+
+	@Override
+	public List<VideoAuthor> recommend(Integer cid) {
+		return videomapper.recommend(cid);
 	}
 
 }

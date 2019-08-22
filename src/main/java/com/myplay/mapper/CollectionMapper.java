@@ -7,19 +7,19 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 @Mapper
 public interface CollectionMapper {
-    int deleteByPrimaryKey(Integer id);
+	Integer deleteByPrimaryKey(Integer id);
 
-    int insert(Collection record);
+    Integer insert(Collection record);
 
     Collection selectByPrimaryKey(Integer id);
 
     List<Collection> selectAll();
 
-    int updateByPrimaryKey(Collection record);
+    Integer updateByPrimaryKey(Collection record);
 
-	int loadCollection(@Param("vid")Integer vid,@Param("userid") Integer userid);
+    Integer loadCollection(@Param("vid")Integer vid,@Param("userid") Integer userid);
 
-	int deleteCollection(Collection collection);
+	Integer deleteCollection(Collection collection);
 	 //根据用户id获得该用户所以收藏
     List<Collection> selectByUserId(Integer uid);
 }

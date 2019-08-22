@@ -7,14 +7,15 @@ import com.myplay.model.Follow;
 import com.myplay.model.User;
 import com.myplay.model.UserComment;
 import com.myplay.model.Video;
+import com.myplay.model.VideoAuthor;
 import com.myplay.model.VideoComment;
 
 public interface IVideoShowService {
 
 	int insert(VideoComment comment);
-	List<UserComment> selectAllComment();
-	List<UserComment> selectNewComment();
-	List<UserComment> getMyComment(int id);
+	List<UserComment> selectAllComment(Integer vid);
+	List<UserComment> selectNewComment(Integer vid);
+	List<UserComment> getMyComment(int id,Integer vid);
 	Video loadVideo(int id);
 	User loadAuthor(Integer id);
 	int follow(Follow follow);
@@ -22,4 +23,5 @@ public interface IVideoShowService {
 	String loadFollowAndCollection(Integer vid, Integer fromUid);
 	int deleteFollow(Follow follow);
 	int deleteCollection(Collection collection);
+	List<VideoAuthor> recommend(Integer cid);
 }

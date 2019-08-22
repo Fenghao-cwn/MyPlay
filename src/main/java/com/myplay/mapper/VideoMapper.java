@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Param;
 
 import com.myplay.model.MyCollection;
 import com.myplay.model.Video;
+import com.myplay.model.VideoAuthor;
 @Mapper
 public interface VideoMapper {
     int deleteByPrimaryKey(Integer id);
@@ -22,5 +23,8 @@ public interface VideoMapper {
     List<MyCollection>selectMyCollection(@Param("vid")Integer vid,@Param("aid")Integer aid);
     
     int updateByPrimaryKey(Video record);
+    
 	List<Video> selectVideosByType(Integer categoryid);
+
+	List<VideoAuthor> recommend(Integer cid);
 }

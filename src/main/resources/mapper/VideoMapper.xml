@@ -76,4 +76,10 @@
     createTime, showcount, vediodetail, average
     from video
   </select>
+  
+  <select id="recommend" resultType="com.myplay.model.VideoAuthor">
+  	select v.id vid, u.id aid,title, v.photourl, videourl, collectioncount, userid, categoryid, status, 
+    createTime, showcount, vediodetail, average,u.name
+    from video v,user u where categoryid=#{cid} and v.userid=u.id order by showcount desc 
+  </select>
 </mapper>
