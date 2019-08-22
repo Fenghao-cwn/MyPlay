@@ -1,5 +1,6 @@
 package com.baidu.ueditor.controller;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.servlet.http.HttpSession;
@@ -26,7 +27,8 @@ public class dynamicController {
 	    Dynamic dynamic =	new Dynamic();
 	    dynamic.setContent(content);
 	    dynamic.setUid(1);
-	    dynamic.setCreatetime(new Date());
+	    SimpleDateFormat s = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		String strDate = s.format(new Date());
 	    System.out.println(dynamic.getContent());
 	    dynamicServiceImpl.insert(dynamic);
 		
