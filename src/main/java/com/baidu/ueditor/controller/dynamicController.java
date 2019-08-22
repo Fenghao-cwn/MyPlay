@@ -29,6 +29,7 @@ public class dynamicController {
 	    dynamic.setUid(1);
 	    SimpleDateFormat s = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		String strDate = s.format(new Date());
+		dynamic.setCreatetime(strDate);
 	    System.out.println(dynamic.getContent());
 	    dynamicServiceImpl.insert(dynamic);
 		
