@@ -44,6 +44,7 @@
 	where to_uid = #{id} 
 	and u.id = #{id}
 	and from_uid = s.id
+	and status !='2'
   </select>
   <select id="getOutboxs"  resultType="com.myplay.model.LetterBox">
      select  message.id,from_uid, message.to_uid,content,createdate,status,s.name toname,s.photourl
@@ -51,11 +52,17 @@
 	where from_uid = #{id} 
 	and u.id = #{id}
 	and to_uid = s.id
+	and status !='2'
   </select>
    <select id="getMessageById"  resultType="com.myplay.model.LetterBox">
      select  content,u.name fromname ,s.name toname from message,user u,user s
 	where message.id = #{id} and from_uid = u.id and to_uid = s.id
   </select>
- 
+ <update id="close" parameterType="com.myplay.model.Message">
+    update message
+    set 
+      status = '2'
+    where id = #{id,jdbcType=INTEGER}
+  </update>
   
 </mapper>
