@@ -58,7 +58,7 @@
   	select id, title, photourl, videourl, collectioncount, userid, categoryid, status, 
     createTime, showcount, vediodetail, average
     from video
-    where title like "%"#{title}"%"
+    where title = #{title,jdbcType=VARCHAR}
     
   </select>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
