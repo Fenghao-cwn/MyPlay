@@ -73,4 +73,10 @@ public class PersonalCenterServiceImpl implements IPersonalCenterService{
 		return dynamicMapper.deleteDynamicById(id);
 	}
 
+	@Override
+	public Dynamic selectDynamicById(Integer id) {
+		// TODO Auto-generated method stub
+		return dynamicMapper.selectDynamicById(id);
+	}
+
 }

@@ -215,4 +215,12 @@ public class PersonalCenterController {
 		iPersonalCenterService.deleteDynamicById(id);
 	}
 	
+	/**
+	 * 通过did查找动态
+	 */
+	@GetMapping("/selectDynamic")
+	public Dynamic selectDynamic(Integer did){
+		return iPersonalCenterService.selectDynamicById(did);
+	}
+	
 }

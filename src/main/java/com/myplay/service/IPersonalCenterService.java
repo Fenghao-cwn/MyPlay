@@ -12,7 +12,9 @@ public interface IPersonalCenterService {
 		List<Dynamic> selectDynamicByUserId(Integer uid);
 		//删除我的动态
 		int deleteDynamicById(Integer id);
-		
+		 //通过did查找动态
+	    Dynamic selectDynamicById(Integer id);
+	    
 	    User selectByPrimaryKey(Integer id);
 
 	    List<User> selectAll();

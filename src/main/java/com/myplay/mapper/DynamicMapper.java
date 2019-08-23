@@ -14,8 +14,8 @@ public interface DynamicMapper {
     int deleteDynamicById(Integer id);
 
     int insert(Dynamic record);
-
-    Dynamic selectByPrimaryKey(Integer id);
+    //通过did查找动态
+    Dynamic selectDynamicById(Integer id);
 
     List<Dynamic> selectAll();
 

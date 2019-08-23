@@ -26,7 +26,7 @@
       content = #{content,jdbcType=LONGVARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+  <select id="selectDynamicById" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select id, title, createtime, uid, content
     from dynamic
     where id = #{id,jdbcType=INTEGER}
