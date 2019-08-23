@@ -22,5 +22,10 @@ public class GoodsTypeController {
 	public List<GoodsType> selectType(){
 		return goodsType.selectType();
 	}
+	
+	@GetMapping("/selectTypeById")
+	public GoodsType selectByPrimaryKey(Integer id){
+		return goodsType.selectByPrimaryKey(id);
+	}
 
 }

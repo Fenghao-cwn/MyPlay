@@ -17,6 +17,11 @@ public class GoodsTypeServicelmpl implements IGoodsTypeService{
 	public List<GoodsType> selectType(){
 		return goodsType.selectType();
 	}
+
+	@Override
+	public GoodsType selectByPrimaryKey(Integer id) {
+		return goodsType.selectByPrimaryKey(id);
+	}
 	
 
 }

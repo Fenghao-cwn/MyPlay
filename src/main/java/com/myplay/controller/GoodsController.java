@@ -24,12 +24,17 @@ public class GoodsController {
 	@Autowired
 	private IGoodsService goods;
 	
-	
 	@GetMapping("/select")
 	public List<Goods> selectAll(){
 		return goods.selectAll();
 	}
 	
+	@GetMapping("/selectById")
+	public Goods selectByPrimaryKey(Integer id){
+		System.out.println("------------------------");
+		System.out.println(goods.selectByPrimaryKey(id));
+		return goods.selectByPrimaryKey(id);
+	};
 	
 
 }
