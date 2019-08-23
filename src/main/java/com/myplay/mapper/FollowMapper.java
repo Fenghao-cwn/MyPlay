@@ -11,6 +11,8 @@ public interface FollowMapper {
 
     Integer insert(Follow record);
 
+    List<Follow> selectMyFollow(Integer from_uid);//根据用户id查找所有的关注 
+    
     Follow selectByPrimaryKey(Integer id);
 
     List<Follow> selectAll();
@@ -19,5 +21,5 @@ public interface FollowMapper {
 
     Integer loadFollow(@Param("toUid") Integer toUid,@Param("fromUid") Integer fromUid);
 
-	Integer deleteFollow(Follow follow);
+	Integer deleteFollow(Follow follow);//删除关注
 }

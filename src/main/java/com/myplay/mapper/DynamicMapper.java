@@ -8,7 +8,10 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface DynamicMapper {
-    int deleteByPrimaryKey(Integer id);
+	//根据userid查找用户的动态
+	List<Dynamic> selectDynamicByUserId(Integer uid);
+	//删除我的动态
+    int deleteDynamicById(Integer id);
 
     int insert(Dynamic record);
 

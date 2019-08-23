@@ -6,8 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.myplay.mapper.CollectionMapper;
+import com.myplay.mapper.DynamicMapper;
+import com.myplay.mapper.FollowMapper;
 import com.myplay.mapper.UserMapper;
 import com.myplay.model.Collection;
+import com.myplay.model.Dynamic;
+import com.myplay.model.Follow;
 import com.myplay.model.User;
 @Service
 public class PersonalCenterServiceImpl implements IPersonalCenterService{
@@ -15,7 +19,11 @@ public class PersonalCenterServiceImpl implements IPersonalCenterService{
 	private UserMapper userMapper;
 	@Autowired
 	private CollectionMapper collectionMapper;
-	@Override
+	@Autowired
+	private FollowMapper followMapper;
+	@Autowired
+	private DynamicMapper dynamicMapper;
+	@Override 
 	public User selectByPrimaryKey(Integer id) {
 		return userMapper.selectByPrimaryKey(id);
 	 
@@ -30,6 +38,39 @@ public class PersonalCenterServiceImpl implements IPersonalCenterService{
 	@Override
 	public int updateByPrimaryKey(User record) {		
 		return userMapper.updateByPrimaryKey(record);
+	}
+
+	//根据用户id查找所有的关注 
+	@Override
+	public List<Follow> selectMyFollow(Integer from_uid) {
+		// TODO Auto-generated method stub
+		return followMapper.selectMyFollow(from_uid);
+	}
+
+	@Override
+	public Integer deleteByPrimaryKey(Integer id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Integer deleteFollow(Follow follow) {
+		// TODO Auto-generated method stub
+		return followMapper.deleteFollow(follow);
+	}
+	
+	
+	//根据userid查找用户的动态
+	@Override
+	public List<Dynamic> selectDynamicByUserId(Integer uid) {
+		// TODO Auto-generated method stub
+		return dynamicMapper.selectDynamicByUserId(uid);
+	}
+
+	@Override
+	public int deleteDynamicById(Integer id) {
+		// TODO Auto-generated method stub
+		return dynamicMapper.deleteDynamicById(id);
 	}
 
 }

@@ -19,6 +19,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.myplay.mapper.UserMapper;
 import com.myplay.model.Collection;
+import com.myplay.model.Dynamic;
+import com.myplay.model.Follow;
 import com.myplay.model.MyCollection;
 import com.myplay.model.User;
 import com.myplay.model.Video;
@@ -124,6 +126,14 @@ public class PersonalCenterController {
 	}
 	
 	/**
+	 * 得到作者
+	 */
+	@GetMapping("/getAuthor")
+	public User getAuthor(Integer aid){
+		return iPersonalCenterService.selectByPrimaryKey(aid);
+	}
+	
+	/**
 	 * 得到作者的所有收藏
 	 * @param session
 	 * @return
@@ -145,5 +155,64 @@ public class PersonalCenterController {
 		}
 		return myCollections;
 	}
+	
+	/**
+	 * 得到作者的所有动态
+	 */
+
+	@GetMapping("/selectAuthorDynamic")
+	public List<Dynamic> selectAuthorDynamic(Integer aid){
+		//根据根据作者id查找该作者的所有动态
+		return iPersonalCenterService.selectDynamicByUserId(aid);
+		
+	}
+	
+	/**
+	 * 根据改用户所有的关注 
+	 * @param session
+	 * @return
+	 */
+	@GetMapping("/selectMyFollow")
+	public List<User> selectMyFollow(HttpSession session){
+		List<User> followUsers=new ArrayList<User>();
+		User user=(User) session.getAttribute("user");
+		List<Follow> folloes=iPersonalCenterService.selectMyFollow(user.getId());//得到了用户的关注表里的记录
+		for (Follow follow : folloes) {
+			//根据关注着的id得到关注者的记录
+			User u=iPersonalCenterService.selectByPrimaryKey(follow.getToUid());
+			followUsers.add(u);//每次得到的记录加入到数组中
+		}
+		return followUsers;
+	}
+	
+	/**
+	 * 删除我的关注
+	 * @param follow
+	 * @param session
+	 */
+	@GetMapping("/deleterMyFollow")
+	public void deleterMyFollow(Follow follow,HttpSession session){
+		User user=(User) session.getAttribute("user");
+		follow.setFromUid(user.getId());
+		iPersonalCenterService.deleteFollow(follow);
+	}
 	 
+	/**
+	 * 根据userid查找用户的动态
+	 */
+	@GetMapping("/selectDynamicByUserId")
+	public List<Dynamic> selectDynamicByUserId(HttpSession session){
+		User user=(User) session.getAttribute("user");
+		return iPersonalCenterService.selectDynamicByUserId(user.getId());
+	}
+	
+	/**
+	 * 删除我的动态
+	 * @param id
+	 */
+	@DeleteMapping("/deleteDynamicById")
+	public void deleteDynamicById(Integer id){
+		iPersonalCenterService.deleteDynamicById(id);
+	}
+	
 }
