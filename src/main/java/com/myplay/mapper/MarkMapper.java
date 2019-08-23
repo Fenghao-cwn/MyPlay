@@ -16,4 +16,8 @@ public interface MarkMapper {
     List<Mark> selectAll();
 
     int updateByPrimaryKey(Mark record);
+
+    Float loadRate(Integer vid);
+
+	Float loadMark(Integer id);
 }

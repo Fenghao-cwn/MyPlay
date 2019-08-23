@@ -15,11 +15,10 @@
   </delete>
   <insert id="insert" parameterType="com.myplay.model.Message">
     insert into message (id, from_uid, to_uid, 
-      content, createdate, status
+      content, createdate
       )
     values (#{id,jdbcType=INTEGER}, #{fromUid,jdbcType=INTEGER}, #{toUid,jdbcType=INTEGER}, 
-      #{content,jdbcType=VARCHAR}, #{createdate,jdbcType=TIMESTAMP}, #{status,jdbcType=INTEGER}
-      )
+      #{content,jdbcType=VARCHAR}, #{createdate,jdbcType=TIMESTAMP} )
   </insert>
   <update id="updateByPrimaryKey" parameterType="com.myplay.model.Message">
     update message

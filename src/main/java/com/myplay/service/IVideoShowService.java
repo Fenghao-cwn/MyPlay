@@ -4,6 +4,8 @@ import java.util.List;
 
 import com.myplay.model.Collection;
 import com.myplay.model.Follow;
+import com.myplay.model.Mark;
+import com.myplay.model.Message;
 import com.myplay.model.User;
 import com.myplay.model.UserComment;
 import com.myplay.model.Video;
@@ -24,4 +26,10 @@ public interface IVideoShowService {
 	int deleteFollow(Follow follow);
 	int deleteCollection(Collection collection);
 	List<VideoAuthor> recommend(Integer cid);
+	Float loadRate(Integer vid);
+	Float loadMark(Integer id);
+	void makeMark(Mark mark );
+	int privateLetter(Message message);
+	void updateVideoCount(int id);
+	void updateVideoCollectionnum(Integer vid);
 }

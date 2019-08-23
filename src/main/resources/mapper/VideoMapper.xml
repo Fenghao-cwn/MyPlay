@@ -105,4 +105,16 @@
     from video
     where categoryid = #{categoryid,jdbcType=INTEGER}
   </select>
+  <!-- 更新浏览次数 -->
+  <update id="updateVideoCount">
+  update video
+    set  showcount = showcount+1
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <!-- 更新收藏次数 -->
+  <update id="updateVideoCollectionnum">
+  update video
+    set  collectioncount = collectioncount+1
+    where id = #{vid,jdbcType=INTEGER}
+  </update>
 </mapper>

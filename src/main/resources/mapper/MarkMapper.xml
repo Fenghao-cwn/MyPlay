@@ -33,4 +33,12 @@
     select id, uid, vid, vcode
     from mark
   </select>
+  <!-- 查询平均分 -->
+  <select id="loadRate" resultType="float">
+  	select average from video where id=#{vid}
+  </select>
+  <!-- 查询用户的打分 -->
+  <select id="loadMark" resultType="float">
+  	select vcode from mark where uid=#{id}
+  </select>
 </mapper>

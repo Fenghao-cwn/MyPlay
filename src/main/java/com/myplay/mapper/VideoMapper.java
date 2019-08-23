@@ -41,4 +41,8 @@ public interface VideoMapper {
     List<Video> searchByCategory(Integer categoryid);
     //推荐查询
 	Video selectByVideoId(Long itemID);
+
+	void updateVideoCount(int id);
+
+	void updateVideoCollectionnum(Integer vid);
 }

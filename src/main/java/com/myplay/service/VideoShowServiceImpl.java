@@ -7,11 +7,15 @@ import org.springframework.stereotype.Service;
 
 import com.myplay.mapper.CollectionMapper;
 import com.myplay.mapper.FollowMapper;
+import com.myplay.mapper.MarkMapper;
+import com.myplay.mapper.MessageMapper;
 import com.myplay.mapper.UserMapper;
 import com.myplay.mapper.VideoCommentMapper;
 import com.myplay.mapper.VideoMapper;
 import com.myplay.model.Collection;
 import com.myplay.model.Follow;
+import com.myplay.model.Mark;
+import com.myplay.model.Message;
 import com.myplay.model.User;
 import com.myplay.model.UserComment;
 import com.myplay.model.Video;
@@ -35,6 +39,12 @@ public class VideoShowServiceImpl implements IVideoShowService{
 	
 	@Autowired
 	private CollectionMapper collectionMapper;
+	
+	@Autowired
+	private MarkMapper markMapper;
+	
+	@Autowired
+	private MessageMapper messageMapper;
 	
 	@Override
 	public int insert(VideoComment comment) {
@@ -108,6 +118,36 @@ public class VideoShowServiceImpl implements IVideoShowService{
 	@Override
 	public List<VideoAuthor> recommend(Integer cid) {
 		return videomapper.recommend(cid);
+	}
+
+	@Override
+	public Float loadRate(Integer vid) {
+		return markMapper.loadRate(vid);
+	}
+
+	@Override
+	public Float loadMark(Integer id) {
+		return markMapper.loadMark(id);
+	}
+
+	@Override
+	public void makeMark(Mark mark) {
+		markMapper.insert(mark);
+	}
+
+	@Override
+	public int privateLetter(Message message) {
+		return messageMapper.insert(message);
+	}
+
+	@Override
+	public void updateVideoCount(int id) {
+		videomapper.updateVideoCount(id);
+	}
+
+	@Override
+	public void updateVideoCollectionnum(Integer vid) {
+		videomapper.updateVideoCollectionnum(vid);
 	}
 
 }

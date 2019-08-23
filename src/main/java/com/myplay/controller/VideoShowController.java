@@ -21,6 +21,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.myplay.model.Collection;
 import com.myplay.model.Follow;
+import com.myplay.model.Mark;
+import com.myplay.model.Message;
 import com.myplay.model.User;
 import com.myplay.model.UserComment;
 import com.myplay.model.Video;
@@ -93,6 +95,7 @@ public class VideoShowController {
 	 */
 	@PostMapping("/loadVideo")
 	public Video loadVideo(int id){
+		service.updateVideoCount(id);
 		return service.loadVideo(id);
 	}
 	/**
@@ -134,6 +137,7 @@ public class VideoShowController {
 		User user = (User) session.getAttribute("user");
 		collection.setUid(user.getId());//设置收藏人的id
 		if(service.collection(collection)!=0){
+			service.updateVideoCollectionnum(collection.getVid());
 			return "收藏成功";
 		}else {
 			return "收藏失败，请重试！";
@@ -241,15 +245,77 @@ public class VideoShowController {
 		redisTemplate.opsForSet().remove(LIKE+SPLIT+vid, String.valueOf(user.getId()));
 		return redisTemplate.opsForSet().size(DISLIKE+SPLIT+vid);
 	}
-	
+	/**
+	 * 加载点赞数
+	 * @param vid
+	 * @return
+	 */
 	@PostMapping("/loadGood")
 	public Long loadGood(Integer vid){
 		return redisTemplate.opsForSet().size(LIKE+SPLIT+vid);
 	}
-	
+	/**
+	 * 加载点踩数
+	 * @param vid
+	 * @return
+	 */
 	@PostMapping("/loadBad")
 	public Long loadBad(Integer vid){
 		return redisTemplate.opsForSet().size(DISLIKE+SPLIT+vid);
+	}
+	/**
+	 * 加载平均分
+	 * @param vid
+	 * @return
+	 */
+	@GetMapping("/loadRate")
+	public float loadRate(Integer vid){
+		return service.loadRate(vid);
+	}
+	/**
+	 * 加载打分
+	 * @param session
+	 * @return
+	 */
+	@GetMapping("/loadMark")
+	public float loadMark(HttpSession session){
+		User user = (User) session.getAttribute("user");
+		return service.loadMark(user.getId());
+	}
+	/**
+	 * 打分
+	 * @param session
+	 * @param mark
+	 * @return
+	 */
+	@GetMapping("/makeMark")
+	public String makeMark(HttpSession session,Mark mark){
+		User user = (User) session.getAttribute("user");
+		mark.setUid(user.getId());
+		if(service.loadMark(user.getId())!=null){
+			return "您已评分过！请勿重新评分";
+		}else {
+			service.makeMark(mark);
+			return "打分成功！";
+		}
+	}
+	/**
+	 * 私信
+	 * @param message
+	 * @param session
+	 * @return
+	 */
+	@GetMapping("/privateLetter")
+	public String privateLetter(Message message,HttpSession session){
+		User user = (User) session.getAttribute("user");
+		message.setFromUid(user.getId());
+		SimpleDateFormat s = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		String strDate = s.format(new Date());
+		message.setCreatedate(strDate);
+		if(service.privateLetter(message)!=0){
+			return "私信成功！";
+		}
+		return "发送失败，请重新发送！";
 	}
 	
 }
