@@ -19,7 +19,7 @@ import com.myplay.model.Video;
 
 @RequestMapping("/admin")
 @RestController
-public class AdminController {
+public class adminController {
     @Autowired
     private AdminService adminservice;
     
@@ -116,8 +116,18 @@ public class AdminController {
     //删除商品
     @ResponseBody
     @RequestMapping("/delgoodbyid")
-    public int delShop(Integer goodid){
-        return adminservice.delShop(goodid);
+    public int delShop(String goodids){
+    	if(goodids.contains("-")){
+    		String[] goodidlist = goodids.split("-");
+    		for(String goodid:goodidlist){
+    			adminservice.delShop(Integer.parseInt(goodid));
+    		}
+    	}else{
+    		Integer goodid = Integer.parseInt(goodids);
+    		adminservice.delShop(goodid);
+    	}
+    		
+        return 1;
     }
     //添加商品
     @ResponseBody
