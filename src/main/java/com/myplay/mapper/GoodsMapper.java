@@ -13,8 +13,6 @@ public interface GoodsMapper {
     Goods selectByPrimaryKey(Integer id);
 
     List<Goods> selectAll();
-    List<Goods> searchByShopCategory(Integer typeid);
-    int updateByPrimaryKey(Goods record);
 
-	List<Goods> searchShopByWord(String searchword);
+    int updateByPrimaryKey(Goods record);
 }
