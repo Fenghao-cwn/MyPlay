@@ -15,11 +15,11 @@
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.myplay.model.User">
-    insert into user (id, name, sex, 
-      signature, photourl, phone, 
-      password)
-    values (null, #{name,jdbcType=VARCHAR}, null, null, 
-    null, #{phone,jdbcType=VARCHAR}, 
+    insert into user (id, name,  
+      signature,  phone, 
+      password) 
+    values (null, #{name,jdbcType=VARCHAR}, null, 
+     #{phone,jdbcType=VARCHAR}, 
       #{password,jdbcType=VARCHAR})
   </insert>
   <update id="updateByPrimaryKey" parameterType="com.myplay.model.User">
@@ -46,5 +46,8 @@
     from user
     where phone = #{phone,jdbcType=VARCHAR}
     	and password = #{password,jdbcType=VARCHAR}
+  </select>
+  <select id="phoneExit" parameterType="com.myplay.model.User" resultType="java.lang.Integer">
+    select count(*) num from user where phone = #{phone,jdbcType=VARCHAR}
   </select>
 </mapper>

@@ -17,4 +17,6 @@ public interface UserMapper {
     int updateByPrimaryKey(User record);
     
     public User login(User record);
+    
+    int phoneExit(User record);
 }

@@ -18,4 +18,16 @@ public class UserServiceImpl implements IUserService{
 		return userMapper.login(user);
 	}
 
+	@Override
+	public int phoneExit(User record) {
+		// TODO Auto-generated method stub
+		return userMapper.phoneExit(record);
+	}
+
+	@Override
+	public int insert(User record) {
+		// TODO Auto-generated method stub
+		return userMapper.insert(record);
+	}
+
 }
