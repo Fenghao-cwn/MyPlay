@@ -1,6 +1,8 @@
 package com.myplay.mapper;
 
 import com.myplay.model.Dynamic;
+import com.myplay.model.dynamicAndUser;
+
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
@@ -15,4 +17,6 @@ public interface DynamicMapper {
     List<Dynamic> selectAll();
 
     int updateByPrimaryKey(Dynamic record);
+
+	List<dynamicAndUser> selectdynamibycuser(Integer fromid);
 }

@@ -35,4 +35,11 @@
     select id, title, createtime, uid, content
     from dynamic
   </select>
+  <select id="selectdynamibycuser" parameterType="java.lang.Integer"
+		resultType="com.myplay.model.dynamicAndUser">
+		select dynamic.id,dynamic.title,dynamic.createtime,
+		dynamic.uid,dynamic.content,user.id id_u,user.name,
+		user.sex,user.signature,user.phone from dynamic,user 
+		where dynamic.uid=user.id
+	</select>
 </mapper>
