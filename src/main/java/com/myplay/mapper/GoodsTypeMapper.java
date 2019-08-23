@@ -15,4 +15,6 @@ public interface GoodsTypeMapper {
     List<GoodsType> selectType();
 
     int updateByPrimaryKey(GoodsType record);
+    
+    List<GoodsType> selectAll();
 }

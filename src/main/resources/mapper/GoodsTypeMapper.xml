@@ -27,4 +27,7 @@
     select id, type_name
     from goods_type
   </select>
+    <select id="selectAll" resultMap="BaseResultMap">
+      select id, type_name from goods_type
+  </select>
 </mapper>

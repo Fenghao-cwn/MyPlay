@@ -82,4 +82,27 @@
     createTime, showcount, vediodetail, average,u.name
     from video v,user u where categoryid=#{cid} and v.userid=u.id order by showcount desc 
   </select>
+  
+  <!-- 审核通过/退回 -->
+  <update id="updateforpass" parameterType="int">
+  	UPDATE video SET STATUS = 1 WHERE id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updatefornotpass" parameterType="int">
+  	UPDATE video SET STATUS = 0 WHERE id = #{id,jdbcType=INTEGER}
+  </update>
+  <!-- 模糊查询 -->
+  <select id="searchByWord" parameterType="string" resultMap="BaseResultMap">
+  	select id, title, photourl, videourl, collectioncount, userid, categoryid, status, 
+    createTime, showcount, vediodetail, average
+    from video
+    where title like "%"#{title}"%"
+    
+  </select>
+  <!-- 类型查询 -->
+  <select id="searchByCategory" resultMap="BaseResultMap" parameterType="int">
+  	select id, title, photourl, videourl, collectioncount, userid, categoryid, status, 
+    createTime, showcount, vediodetail, average
+    from video
+    where categoryid = #{categoryid,jdbcType=INTEGER}
+  </select>
 </mapper>

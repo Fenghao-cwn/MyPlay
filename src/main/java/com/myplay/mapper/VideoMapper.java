@@ -10,6 +10,8 @@ import com.myplay.model.Video;
 import com.myplay.model.VideoAuthor;
 @Mapper
 public interface VideoMapper {
+	List<Video> selectAll();
+	
     int deleteByPrimaryKey(Integer id);
 
     int insert(Video record);
@@ -27,4 +29,14 @@ public interface VideoMapper {
 	List<Video> selectVideosByType(Integer categoryid);
 
 	List<VideoAuthor> recommend(Integer cid);
+	
+    //审核通过
+    int updateforpass(Integer videoid);
+    //审核退回
+    int updatefornotpass(Integer videoid);
+    
+    //模糊查询
+    List<Video> searchByWord(String searchword);
+    //类型查询
+    List<Video> searchByCategory(Integer categoryid);
 }

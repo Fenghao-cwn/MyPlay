@@ -15,4 +15,8 @@ public interface GoodsMapper {
     List<Goods> selectAll();
 
     int updateByPrimaryKey(Goods record);
+    
+    List<Goods> searchByShopCategory(Integer typeid);
+
+    List<Goods> searchShopByWord(String searchword);
 }
