@@ -16,7 +16,7 @@ public interface VideoMapper {
 
     int insert(Video record);
 
-    Video selectByPrimaryKey(Integer id);
+    Video selectByPrimaryKey(Integer itemID);
 
     List<Video> selectAllVideo();
     
@@ -39,4 +39,6 @@ public interface VideoMapper {
     List<Video> searchByWord(String searchword);
     //类型查询
     List<Video> searchByCategory(Integer categoryid);
+    //推荐查询
+	Video selectByVideoId(Long itemID);
 }

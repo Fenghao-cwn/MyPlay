@@ -10,4 +10,7 @@ public interface ICategoryService {
 	List<Category> selectAll();
 
 	List<Video> selectVideosByType(Integer categoryid);
+
+	Video selectByPrimaryKey(Integer itemID);
+
 }

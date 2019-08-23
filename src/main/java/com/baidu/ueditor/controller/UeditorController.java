@@ -33,9 +33,4 @@ public class UeditorController {
 			e.printStackTrace();
 		}
 	}
-	@RequestMapping("/contents")
-	public void content(String content) {
-		
-		
-	}
 }

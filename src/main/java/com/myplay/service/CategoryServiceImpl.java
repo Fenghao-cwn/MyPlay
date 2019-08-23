@@ -27,5 +27,11 @@ public class CategoryServiceImpl implements ICategoryService {
 		
 		return videoMapper.selectVideosByType(categoryid);
 	}
+	@Override
+	public Video selectByPrimaryKey(Integer itemID) {
+		return videoMapper.selectByPrimaryKey(itemID);
+		// TODO Auto-generated method stub
+		
+	}
 	
 }
