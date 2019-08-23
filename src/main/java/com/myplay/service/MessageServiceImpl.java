@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.myplay.mapper.MessageMapper;
 import com.myplay.model.LetterBox;
+import com.myplay.model.Message;
 
 @Service
 public class MessageServiceImpl implements IMessageService{
@@ -32,6 +33,13 @@ public class MessageServiceImpl implements IMessageService{
 	public LetterBox getMessageById(Integer id) {
 		// TODO Auto-generated method stub
 		return messageMapper.getMessageById(id);
+	}
+
+
+	@Override
+	public int close(Integer id) {
+		// TODO Auto-generated method stub
+		return messageMapper.close(id);
 	}
 
 }

@@ -25,4 +25,7 @@ public interface MessageMapper {
  
     //获取信息详情
     LetterBox getMessageById(Integer id);
+    
+    //删除信息
+    int close(Integer id);
 }

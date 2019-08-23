@@ -3,6 +3,7 @@ package com.myplay.service;
 import java.util.List;
 
 import com.myplay.model.LetterBox;
+import com.myplay.model.Message;
 
 public interface IMessageService {
 
@@ -12,4 +13,6 @@ public interface IMessageService {
 	List<LetterBox> getOutboxs(Integer id);
 	//获取信息详情
 	LetterBox getMessageById(Integer id);
+	//删除信息
+	int close(Integer id);
 }

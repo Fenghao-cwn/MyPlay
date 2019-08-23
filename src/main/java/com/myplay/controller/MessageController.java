@@ -7,10 +7,12 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.myplay.model.LetterBox;
+import com.myplay.model.Message;
 import com.myplay.model.User;
 import com.myplay.service.IMessageService;
 
@@ -39,5 +41,17 @@ public class MessageController {
 	@GetMapping("/getMessageById")
 	public LetterBox getMessageById(Integer id){
 		return iMessageService.getMessageById(id);
+	}
+	
+	@PutMapping("/inboxclose")
+	public void inboxclose(Integer id){
+		
+		iMessageService.close(id);
+	}
+	
+	@PutMapping("/outboxclose")
+	public void outboxclose(Integer id){
+		
+		iMessageService.close(id);
 	}
 }
