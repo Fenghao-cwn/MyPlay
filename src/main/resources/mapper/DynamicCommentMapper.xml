@@ -8,7 +8,7 @@
     <result column="from_uid" jdbcType="INTEGER" property="fromUid" />
     <result column="did" jdbcType="INTEGER" property="did" />
   </resultMap>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+  <delete id="deleteDynamicComment" parameterType="java.lang.Integer">
     delete from dynamic_comment
     where id = #{id,jdbcType=INTEGER}
   </delete>
@@ -26,6 +26,13 @@
       did = #{did,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  <!-- 根据did查找我的动态评论 -->
+   <select id="selectCommentById" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, content, to_uid, from_uid, did
+    from dynamic_comment
+    where did = #{did,jdbcType=INTEGER}
+  </select>
+  
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select id, content, to_uid, from_uid, did
     from dynamic_comment

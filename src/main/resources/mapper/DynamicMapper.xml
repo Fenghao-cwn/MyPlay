@@ -37,9 +37,10 @@
     from dynamic
     where uid = #{uid,jdbcType=INTEGER}
   </select>
-  <select id="selectAll" resultMap="BaseResultMap">
-    select id, title, createtime, uid, content
-    from dynamic
+  <!-- 查找我的动态的评论 -->
+  <select id="selectMyDynamicComment" resultType="com.myplay.model.MyDynamicComment">
+    select dc.id id, did,content,name,photourl,from_uid from dynamic_comment dc,user u
+ 	where dc.did=#{did} and from_uid=u.id
   </select>
   <select id="selectdynamibycuser" parameterType="java.lang.Integer"
 		resultType="com.myplay.model.dynamicAndUser">

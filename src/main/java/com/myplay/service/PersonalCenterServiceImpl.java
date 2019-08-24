@@ -2,16 +2,21 @@ package com.myplay.service;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.myplay.mapper.CollectionMapper;
+import com.myplay.mapper.DynamicCommentMapper;
 import com.myplay.mapper.DynamicMapper;
 import com.myplay.mapper.FollowMapper;
 import com.myplay.mapper.UserMapper;
 import com.myplay.model.Collection;
 import com.myplay.model.Dynamic;
+import com.myplay.model.DynamicComment;
 import com.myplay.model.Follow;
+import com.myplay.model.MyDynamicComment;
 import com.myplay.model.User;
 @Service
 public class PersonalCenterServiceImpl implements IPersonalCenterService{
@@ -23,6 +28,8 @@ public class PersonalCenterServiceImpl implements IPersonalCenterService{
 	private FollowMapper followMapper;
 	@Autowired
 	private DynamicMapper dynamicMapper;
+	@Autowired
+	private DynamicCommentMapper dynamicCommentMapper;
 	@Override 
 	public User selectByPrimaryKey(Integer id) {
 		return userMapper.selectByPrimaryKey(id);
@@ -77,6 +84,24 @@ public class PersonalCenterServiceImpl implements IPersonalCenterService{
 	public Dynamic selectDynamicById(Integer id) {
 		// TODO Auto-generated method stub
 		return dynamicMapper.selectDynamicById(id);
+	}
+
+    //查找我的动态的评论
+	@Override
+	public List<MyDynamicComment> selectMyDynamicComment(Integer did) {
+		return dynamicMapper.selectMyDynamicComment(did);
+	}
+	// 根据did查找我的动态评论 
+	@Override
+	public List<DynamicComment> selectCommentById(Integer did) {
+		// TODO Auto-generated method stub
+		return dynamicCommentMapper.selectCommentById(did);
+	}
+
+	@Override
+	public int deleteDynamicComment(Integer id) {
+		// TODO Auto-generated method stub
+		return dynamicCommentMapper.deleteDynamicComment(id);
 	}
 
 }

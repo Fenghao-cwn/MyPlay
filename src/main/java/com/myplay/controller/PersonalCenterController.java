@@ -22,6 +22,7 @@ import com.myplay.model.Collection;
 import com.myplay.model.Dynamic;
 import com.myplay.model.Follow;
 import com.myplay.model.MyCollection;
+import com.myplay.model.MyDynamicComment;
 import com.myplay.model.User;
 import com.myplay.model.Video;
 import com.myplay.service.IPersonalCenterService;
@@ -90,11 +91,13 @@ public class PersonalCenterController {
 		for (Collection collection : collections) {
 			//通过遍历收藏表，根据收藏表的视频id查找所以的视频
 			Video video =iVideoService.selectByPrimaryKey(collection.getVid());
+			if(video!=null){
 			//根据用户id、视频id、作者id查找返回一个自己封装的数组
 			List<MyCollection> mcollections= iVideoService.selectMyCollection(video.getId(), video.getUserid());
 			for (MyCollection myCollection2 : mcollections) {
 				System.out.println(myCollection2.getVid()+myCollection2.getName());
 				myCollections.add(myCollection2);
+			}
 			}
 		}
 		return myCollections;
@@ -223,4 +226,19 @@ public class PersonalCenterController {
 		return iPersonalCenterService.selectDynamicById(did);
 	}
 	
+	/**  
+	 * 查找我的动态的评论
+	 */
+	@GetMapping("/selectMyDynamicComment")
+	public List<MyDynamicComment>  selectMyDynamicComment(Integer did){	
+		return iPersonalCenterService.selectMyDynamicComment(did);
+	}
+	
+	/**
+	 * 删除我的动态评论
+	 */
+	@DeleteMapping("/deleteDynamicComment")
+	public void deleteDynamicComment(Integer id){
+		iPersonalCenterService.deleteDynamicComment(id);
+	}
 }
