@@ -8,6 +8,7 @@
 		<result column="price" jdbcType="REAL" property="price" />
 		<result column="introduce" jdbcType="VARCHAR" property="introduce" />
 		<result column="type_id" jdbcType="INTEGER" property="typeId" />
+		<result column="num" jdbcType="INTEGER" property="num" />
 	</resultMap>
 	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
 		delete from goods
@@ -15,11 +16,11 @@
 	</delete>
 	<insert id="insert" parameterType="com.myplay.model.Goods">
 		insert into goods (id, name, picture,
-		price, introduce, type_id
+		price, introduce, type_id,num
 		)
 		values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR},
 		#{picture,jdbcType=VARCHAR},
-		#{price,jdbcType=REAL}, #{introduce,jdbcType=VARCHAR}, #{typeId,jdbcType=INTEGER}
+		#{price,jdbcType=REAL}, #{introduce,jdbcType=VARCHAR}, #{typeId,jdbcType=INTEGER},#{num,jdbcType=INTEGER}
 		)
 	</insert>
 	<update id="updateByPrimaryKey" parameterType="com.myplay.model.Goods">
@@ -28,28 +29,29 @@
 		picture = #{picture,jdbcType=VARCHAR},
 		price = #{price,jdbcType=REAL},
 		introduce = #{introduce,jdbcType=VARCHAR},
-		type_id = #{typeId,jdbcType=INTEGER}
+		type_id = #{typeId,jdbcType=INTEGER},
+		num = #{num,jdbcType=INTEGER}
 		where id = #{id,jdbcType=INTEGER}
 	</update>
 	<select id="selectByPrimaryKey" parameterType="java.lang.Integer"
 		resultMap="BaseResultMap">
-		select id, name, picture, price, introduce, type_id
+		select id, name, picture, price, introduce, type_id, num
 		from goods
 		where id = #{id,jdbcType=INTEGER}
 	</select>
 	<select id="selectAll" resultMap="BaseResultMap">
-		select id, name, picture, price, introduce, type_id
+		select id, name, picture, price, introduce, type_id, num
 		from goods
 	</select>
 	<select id="searchByShopCategory" resultMap="BaseResultMap"
 		parameterType="int">
-		select id, name, picture, price, introduce, type_id
+		select id, name, picture, price, introduce, type_id, num
 		from goods
 		where type_id = #{typeId,jdbcType=INTEGER}
 	</select>
 	<select id="searchShopByWord" resultMap="BaseResultMap"
 		parameterType="string">
-		select id, name, picture, price, introduce, type_id
+		select id, name, picture, price, introduce, type_id, num
 		from goods
 		where name like "%"#{name}"%"
 	</select>

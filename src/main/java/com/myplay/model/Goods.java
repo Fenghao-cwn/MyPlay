@@ -12,8 +12,17 @@ public class Goods {
     private String introduce;
 
     private Integer typeId;
+    
+    private Integer num;
+    public Integer getNum() {
+		return num;
+	}
 
-    public Integer getId() {
+	public void setNum(Integer num) {
+		this.num = num;
+	}
+
+	public Integer getId() {
         return id;
     }
 

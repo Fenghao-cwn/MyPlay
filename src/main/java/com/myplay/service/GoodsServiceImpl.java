@@ -21,9 +21,10 @@ public class GoodsServiceImpl implements IGoodsService{
 	}
 
 	@Override
-	public Goods selectByPrimaryKey(Integer id) {
+	public Goods selectById(Integer id) {
+		// TODO Auto-generated method stub
 		return goodsMapper.selectByPrimaryKey(id);
 	}
-	
+
 
 }
