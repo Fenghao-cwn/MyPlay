@@ -42,4 +42,11 @@ public class MessageServiceImpl implements IMessageService{
 		return messageMapper.close(id);
 	}
 
+
+	@Override
+	public int look(Integer id) {
+		// TODO Auto-generated method stub
+		return messageMapper.look(id);
+	}
+
 }

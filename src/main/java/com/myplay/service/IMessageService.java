@@ -15,4 +15,6 @@ public interface IMessageService {
 	LetterBox getMessageById(Integer id);
 	//删除信息
 	int close(Integer id);
+	//已读
+	int look(Integer id);
 }

@@ -26,7 +26,6 @@ public class MessageController {
 	
 	@GetMapping("/inbox")
 	public List<LetterBox> inbox(HttpSession session){
-		System.out.println("==inbox==");
 		User user = (User)session.getAttribute("user");
 		return iMessageService.getInboxs(user.getId());
 	} 
@@ -53,5 +52,11 @@ public class MessageController {
 	public void outboxclose(Integer id){
 		
 		iMessageService.close(id);
+	}
+	
+	@PutMapping("/look")
+	public void look(Integer id){
+		
+		iMessageService.look(id);
 	}
 }

@@ -39,7 +39,7 @@
     from message
   </select>
    <select id="getInboxs"  resultType="com.myplay.model.LetterBox">
-     select  message.id,from_uid, message.to_uid,content,createdate,status,s.name fromname,s.photourl
+     select  message.id,from_uid fromUid, message.to_uid toUid,content,createdate,status,s.name fromname,s.photourl
 	from message,user u,user s 
 	where to_uid = #{id} 
 	and u.id = #{id}
@@ -62,6 +62,12 @@
     update message
     set 
       status = '2'
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="look" parameterType="com.myplay.model.Message">
+    update message
+    set 
+      status = '1'
     where id = #{id,jdbcType=INTEGER}
   </update>
   

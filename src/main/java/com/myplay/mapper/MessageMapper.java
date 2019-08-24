@@ -28,4 +28,7 @@ public interface MessageMapper {
     
     //删除信息
     int close(Integer id);
+    
+    //已读
+    int look(Integer id);
 }
