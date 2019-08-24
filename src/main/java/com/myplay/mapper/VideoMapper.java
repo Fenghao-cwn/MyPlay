@@ -16,7 +16,7 @@ public interface VideoMapper {
 
     int insert(Video record);
 
-    Video selectByPrimaryKey(Integer itemID);
+    Video selectByPrimaryKey(Integer id);
 
     List<Video> selectAllVideo();
     
