@@ -17,4 +17,6 @@ public interface IMessageService {
 	int close(Integer id);
 	//已读
 	int look(Integer id);
+	//已读
+	int inboxnolook(Integer id);
 }

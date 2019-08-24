@@ -70,5 +70,7 @@
       status = '1'
     where id = #{id,jdbcType=INTEGER}
   </update>
-  
+  <select id="inboxnolook"  resultType="java.lang.Integer">
+     select count(*) nums from message where to_uid = #{id,jdbcType=INTEGER} and status = '0'
+  </select>
 </mapper>

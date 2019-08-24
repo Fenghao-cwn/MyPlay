@@ -31,4 +31,7 @@ public interface MessageMapper {
     
     //已读
     int look(Integer id);
+    
+    //未读信息数
+    int inboxnolook(Integer id);
 }

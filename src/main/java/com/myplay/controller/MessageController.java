@@ -59,4 +59,10 @@ public class MessageController {
 		
 		iMessageService.look(id);
 	}
+	
+	@GetMapping("/inboxnolook")
+	public int inboxnolook(HttpSession session){
+		User user = (User)session.getAttribute("user");
+		return iMessageService.inboxnolook(user.getId());
+	}
 }

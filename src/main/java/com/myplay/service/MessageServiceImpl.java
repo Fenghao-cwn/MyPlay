@@ -49,4 +49,11 @@ public class MessageServiceImpl implements IMessageService{
 		return messageMapper.look(id);
 	}
 
+
+	@Override
+	public int inboxnolook(Integer id) {
+		// TODO Auto-generated method stub
+		return messageMapper.inboxnolook( id);
+	}
+
 }
