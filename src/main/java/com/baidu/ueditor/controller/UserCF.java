@@ -34,14 +34,21 @@ public class UserCF {
 	private CategoryServiceImpl  categoryServiceImpl;
 	@GetMapping("/recom")
 	public List recom(HttpSession session) throws Exception, TasteException {
-		User u = (User)session.getAttribute("uu");
+
 		String file = "src/data/testCF.csv";
 		DataModel model = new FileDataModel(new File(file));// 数据模型
 		UserSimilarity user = new EuclideanDistanceSimilarity(model);// 用户相识度算法
 		NearestNUserNeighborhood neighbor = new NearestNUserNeighborhood(nei_num, user, model);
 		// 用户近邻算法
 		Recommender r = new GenericUserBasedRecommender(model, neighbor, user);// 用户推荐算法
-		int iter = u.getId();
+		User u = (User)session.getAttribute("uu");
+		int iter = 0;
+		if(u!=null){
+			 iter = u.getId();
+		}else{
+			 iter = 1;
+		}
+		
 		//int iter = 1;/// 得到用户ID
 		List<RecommendedItem> list = r.recommend(iter, rec_num);
 		List<Video> videos = new ArrayList();

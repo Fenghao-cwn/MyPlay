@@ -36,4 +36,9 @@ public class categoryController {
 		List<Video> videos = categoryServiceImpl.selectVideosByType(cid);		
 		return videos;
 	}
+	@GetMapping("/all")
+	public List<Video> selectAllVideo(){
+		List<Video> videos = categoryServiceImpl.selectAllVideo();
+		return videos;	
+	}
 }

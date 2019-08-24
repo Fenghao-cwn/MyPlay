@@ -13,4 +13,6 @@ public interface ICategoryService {
 
 	Video selectByPrimaryKey(Integer itemID);
 
+	List<Video> selectAllVideo();
+
 }
