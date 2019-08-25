@@ -3,6 +3,7 @@ package com.myplay.mapper;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import com.myplay.model.Mark;
 @Mapper
@@ -19,5 +20,5 @@ public interface MarkMapper {
 
     Float loadRate(Integer vid);
 
-	Float loadMark(Integer id);
+	Float loadMark(@Param("id") Integer id,@Param("vid") Integer vid);
 }

@@ -27,7 +27,7 @@ public interface IVideoShowService {
 	int deleteCollection(Collection collection);
 	List<VideoAuthor> recommend(Integer cid);
 	Float loadRate(Integer vid);
-	Float loadMark(Integer id);
+	Float loadMark(Integer id, Integer vid);
 	void makeMark(Mark mark );
 	int privateLetter(Message message);
 	void updateVideoCount(int id);

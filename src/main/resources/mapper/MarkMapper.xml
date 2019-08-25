@@ -35,10 +35,10 @@
   </select>
   <!-- 查询平均分 -->
   <select id="loadRate" resultType="float">
-  	select average from video where id=#{vid}
+  	select AVG(vcode) from mark where vid=#{vid}
   </select>
   <!-- 查询用户的打分 -->
   <select id="loadMark" resultType="float">
-  	select vcode from mark where uid=#{id}
+  	select vcode from mark where uid=#{id} and vid=#{vid}
   </select>
 </mapper>

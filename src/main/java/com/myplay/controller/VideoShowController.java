@@ -278,9 +278,9 @@ public class VideoShowController {
 	 * @return
 	 */
 	@GetMapping("/loadMark")
-	public float loadMark(HttpSession session){
+	public float loadMark(HttpSession session,Integer vid){
 		User user = (User) session.getAttribute("user");
-		return service.loadMark(user.getId());
+		return service.loadMark(user.getId(),vid);
 	}
 	/**
 	 * 打分
@@ -292,7 +292,7 @@ public class VideoShowController {
 	public String makeMark(HttpSession session,Mark mark){
 		User user = (User) session.getAttribute("user");
 		mark.setUid(user.getId());
-		if(service.loadMark(user.getId())!=null){
+		if(service.loadMark(user.getId(),mark.getVid())!=null){
 			return "您已评分过！请勿重新评分";
 		}else {
 			service.makeMark(mark);

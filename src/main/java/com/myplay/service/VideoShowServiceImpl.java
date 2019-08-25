@@ -97,7 +97,7 @@ public class VideoShowServiceImpl implements IVideoShowService{
 				return "加载关注成功";
 			}
 		}else {
-			if (collectionMapper.loadCollection(vid,fromUid)!=0) {
+			if (collectionMapper.loadCollection(vid,fromUid)!=null) {
 				return "加载收藏成功";
 			}else {
 				return "加载失败";
@@ -126,8 +126,8 @@ public class VideoShowServiceImpl implements IVideoShowService{
 	}
 
 	@Override
-	public Float loadMark(Integer id) {
-		return markMapper.loadMark(id);
+	public Float loadMark(Integer id,Integer vid) {
+		return markMapper.loadMark(id,vid);
 	}
 
 	@Override

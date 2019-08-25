@@ -3,7 +3,6 @@
 <mapper namespace="com.myplay.mapper.CategoryMapper">
   <resultMap id="BaseResultMap" type="com.myplay.model.Category">
     <id column="id" jdbcType="INTEGER" property="id" />
-    <result column="seq" jdbcType="INTEGER" property="seq" />
     <result column="name" jdbcType="VARCHAR" property="name" />
   </resultMap>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
@@ -11,24 +10,20 @@
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.myplay.model.Category">
-    insert into category (id, seq, name
-      )
-    values (#{id,jdbcType=INTEGER}, #{seq,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}
-      )
+    insert into category (name) values (#{name,jdbcType=VARCHAR})
   </insert>
   <update id="updateByPrimaryKey" parameterType="com.myplay.model.Category">
     update category
-    set seq = #{seq,jdbcType=INTEGER},
-      name = #{name,jdbcType=VARCHAR}
+    set name = #{name,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select id, seq, name
+    select id,name
     from category
     where id = #{id,jdbcType=INTEGER}
   </select>
   <select id="selectAll" resultType="com.myplay.model.Category" >
-    select id, seq, name
+    select id, name
     from category
   </select>
 </mapper>
