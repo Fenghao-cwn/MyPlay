@@ -8,10 +8,12 @@ import org.springframework.stereotype.Service;
 import com.myplay.mapper.CategoryMapper;
 import com.myplay.mapper.GoodsMapper;
 import com.myplay.mapper.GoodsTypeMapper;
+import com.myplay.mapper.UserMapper;
 import com.myplay.mapper.VideoMapper;
 import com.myplay.model.Category;
 import com.myplay.model.Goods;
 import com.myplay.model.GoodsType;
+import com.myplay.model.User;
 import com.myplay.model.Video;
 
 @Service
@@ -24,6 +26,8 @@ public class AdminService {
 	private GoodsMapper goodsmapper;
 	@Autowired
 	private GoodsTypeMapper goodstypemapper;
+	@Autowired
+	private UserMapper usermapper;
 	
 	
 	public List<Video> getVideoList() {
@@ -83,6 +87,30 @@ public class AdminService {
 
 	public Goods getGoodById(Integer goodid) {
 		return goodsmapper.selectByPrimaryKey(goodid);
+	}
+
+	public int addGood(Goods goods) {
+		return goodsmapper.insert(goods);
+	}
+
+	public int addCategory(Category record) {
+		return categorymapper.insert(record);
+	}
+	//删除视频类型
+	public int delCategory(Integer categoryid) {
+		return categorymapper.deleteByPrimaryKey(categoryid);
+	}
+	
+	public int addGoodType(GoodsType type) {
+		return goodstypemapper.insert(type);
+	}
+
+	public int delGoodType(Integer typeid) {
+		return goodstypemapper.deleteByPrimaryKey(typeid);
+	}
+	//获取用户列表
+	public List<User> getUserList() {
+		return usermapper.selectAll();
 	}
 	
 }

@@ -3,8 +3,6 @@ package com.myplay.model;
 public class Category {
     private Integer id;
 
-    private Integer seq;
-
     private String name;
 
     public Integer getId() {
@@ -15,14 +13,6 @@ public class Category {
         this.id = id;
     }
 
-    public Integer getSeq() {
-        return seq;
-    }
-
-    public void setSeq(Integer seq) {
-        this.seq = seq;
-    }
-
     public String getName() {
         return name;
     }
@@ -30,4 +20,12 @@ public class Category {
     public void setName(String name) {
         this.name = name == null ? null : name.trim();
     }
+
+	public Category(Integer id, String name) {
+		super();
+		this.id = id;
+		this.name = name;
+	}
+    
+    
 }

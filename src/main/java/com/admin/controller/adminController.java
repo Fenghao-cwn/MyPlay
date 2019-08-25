@@ -1,12 +1,19 @@
 package com.admin.controller;
+
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
+import java.util.Random;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.admin.service.AdminService;
 import com.github.pagehelper.PageHelper;
@@ -15,6 +22,7 @@ import com.myplay.model.AdminData;
 import com.myplay.model.Category;
 import com.myplay.model.Goods;
 import com.myplay.model.GoodsType;
+import com.myplay.model.User;
 import com.myplay.model.Video;
 
 @RequestMapping("/admin")
@@ -23,6 +31,7 @@ public class adminController {
     @Autowired
     private AdminService adminservice;
     
+ 
     //  视频管理*********************************************************************
     @ResponseBody
     @RequestMapping("/getvideolist")
@@ -55,11 +64,31 @@ public class adminController {
         PageInfo<Video> pageinfo = new PageInfo<Video>(videoList);
         return AdminData.success().add("pageinfo", pageinfo);
     }
+    //获取用户列表
+    @ResponseBody
+    @RequestMapping("/getuserlist")
+    public List<User> getUserList(){
+        return adminservice.getUserList();
+    }
     //获取视频类型
     @ResponseBody
     @RequestMapping("/getcategory")
     public List<Category> getcategory(){
         return adminservice.getvideocategory();
+    }
+    //添加视频类型
+    @ResponseBody
+    @RequestMapping("/addcategory")
+    public int addCategory(String name){
+    	
+    	Category cate = new Category(null, name);
+        return adminservice.addCategory(cate);
+    }
+    //删除视频类型
+    @ResponseBody
+    @RequestMapping("/delcategory")
+    public int delCategory(Integer categoryid){
+        return adminservice.delCategory(categoryid);
     }
     //类型查询
     @ResponseBody
@@ -83,11 +112,24 @@ public class adminController {
         return AdminData.success().add("pageinfo", pageinfo);
     }
     
-    //获取视频类型
+    //获取商品类型
     @ResponseBody
     @RequestMapping("/getgoodtype")
     public List<GoodsType> getGoodType(){
         return adminservice.getGoodType();
+    }
+    //添加商品类型
+    @ResponseBody
+    @RequestMapping("/addgoodtype")
+    public int addGoodType(String typename){
+    	GoodsType goodsType = new GoodsType(null,typename);
+        return adminservice.addGoodType(goodsType);
+    }
+    //删除商品类型
+    @ResponseBody
+    @RequestMapping("/delgoodtype")
+    public int delGoodType(Integer typeid){
+        return adminservice.delGoodType(typeid);
     }
     //商品类型查询
     @ResponseBody
@@ -132,13 +174,46 @@ public class adminController {
     //添加商品
     @ResponseBody
     @RequestMapping("/addshop")
-    public int addShop(Goods goods){
-        return adminservice.addShop(goods);
+    public String addShop(@RequestParam(value = "picture", required = false) MultipartFile picture,Goods goods){
+    	System.out.println(goods.getName()+"  "+goods.getPrice()+"  "+goods.getTypeId()+"  "+goods.getIntroduce()+"  "+picture.getOriginalFilename());
+    	//上传图片
+    	try {
+        	//String uuid = UUID.randomUUID().toString().replace("-", "").toUpperCase();
+        	File newfile = new File("C:/SCJ/upload/"+picture.getOriginalFilename());
+        	picture.transferTo(newfile);
+        	//保存数据
+           /* int i = adminservice.addGood(goods);*/
+           /* if(i>0){
+            	return "success";
+            }*/
+        	return "success";
+		} catch (IllegalStateException | IOException e) {
+			e.printStackTrace();
+		}
+        return "添加失败";
     }
     //通过ID查商品
     @ResponseBody
     @RequestMapping("/getgoodbyid")
     public Goods getGoodById(Integer goodid){
         return adminservice.getGoodById(goodid);
+    }
+    
+    //图片上传
+    @ResponseBody
+    @RequestMapping("/uploadphoto")
+    public String upload(MultipartFile file){
+        return "";
+        
+    }
+    //管理员登录
+    @ResponseBody
+    @RequestMapping("/adminlogin")
+    public int adminLogin(String admin_phone,String admin_password){
+    	if(admin_phone!=null && admin_password!=null && admin_phone.trim()!="" && admin_password.trim()!=""){
+    		return 1;
+    	}else{
+    		return 0;
+    	}
     }
 }
