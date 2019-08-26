@@ -55,4 +55,9 @@
 		from goods
 		where name like "%"#{name}"%"
 	</select>
+	
+	<select id="selectAllGoodsByType" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+		select id, name, picture, price, introduce, type_id, num
+		from goods where type_id = #{typeId}
+	</select>
 </mapper>

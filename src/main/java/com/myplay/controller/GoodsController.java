@@ -10,16 +10,22 @@ import java.util.Set;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.myplay.model.Goods;
 import com.myplay.service.IGoodsService;
+import com.myplay.util.Commons;
 
 @CrossOrigin
 @RestController
+@Controller
 @RequestMapping("/goods")
 public class GoodsController {
 
@@ -27,8 +33,13 @@ public class GoodsController {
 	private IGoodsService goods;
 
 	@GetMapping("/select")
-	public List<Goods> selectAll() {
-		return goods.selectAll();
+	public PageInfo selectAll(@RequestParam(value="pageNum",defaultValue="1") Integer pageNum,@RequestParam(value="typeId") Integer typeId) {
+		System.out.println("pageNum:"+pageNum+"typeId:"+typeId);
+		PageHelper.startPage(pageNum,Commons.goods_num);
+		List<Goods> allGoods = goods.selectAllGoodsByType(typeId);
+		PageInfo pages = new PageInfo<>(allGoods);
+		return pages;
+		
 	}
 
 	@GetMapping("/selectById")

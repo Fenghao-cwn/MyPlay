@@ -19,4 +19,6 @@ public interface GoodsMapper {
     List<Goods> searchByShopCategory(Integer typeid);
 
     List<Goods> searchShopByWord(String searchword);
+    
+    List<Goods> selectAllGoodsByType(Integer typeId);
 }

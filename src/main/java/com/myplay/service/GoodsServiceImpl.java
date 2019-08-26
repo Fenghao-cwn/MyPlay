@@ -26,5 +26,10 @@ public class GoodsServiceImpl implements IGoodsService{
 		return goodsMapper.selectByPrimaryKey(id);
 	}
 
+	@Override
+	public List<Goods> selectAllGoodsByType(Integer typeId) {		
+		return goodsMapper.selectAllGoodsByType(typeId);
+	}
+
 
 }
