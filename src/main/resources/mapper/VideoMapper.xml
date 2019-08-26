@@ -69,7 +69,7 @@
   <select id="selectMyCollection" resultType="com.myplay.model.MyCollection">
   	select c.id cid, v.id vid,v.userid aid,title,v.photourl vphoto,videourl,collectioncount,categoryid,status,createtime,showcount,vediodetail,a.photourl,a.name,a.signature
 	from video v, user a,collection c
-	where v.id=#{vid} and v.userid=#{aid} and v.userid=a.id and c.vid=v.id
+	where v.id=#{vid} and v.userid=#{aid} and v.userid=a.id and c.uid=#{uid} and c.vid=#{vid}
   </select>
   <select id="selectAll" resultMap="BaseResultMap">
     select id, title, photourl, videourl, collectioncount, userid, categoryid, status, 
