@@ -22,7 +22,7 @@ public interface VideoMapper {
     
     List<Video> selectVideosByUid(Integer userid);//根据用户查找所以视频
     //查询用户的所有收藏
-    List<MyCollection>selectMyCollection(@Param("vid")Integer vid,@Param("aid")Integer aid);
+    List<MyCollection>selectMyCollection(@Param("vid")Integer vid,@Param("aid")Integer aid, @Param("uid")Integer uid);
     
     int updateByPrimaryKey(Video record);
     

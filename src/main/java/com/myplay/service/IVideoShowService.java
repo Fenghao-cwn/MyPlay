@@ -32,4 +32,5 @@ public interface IVideoShowService {
 	int privateLetter(Message message);
 	void updateVideoCount(int id);
 	void updateVideoCollectionnum(Integer vid);
+	int loadFollow(Integer toUid,Integer fromUid);
 }
