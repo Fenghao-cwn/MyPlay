@@ -63,8 +63,8 @@ public class VideoServiceImpl implements IVideoService{
 	}
 	//查询用户所以收藏
 	@Override
-	public List<MyCollection> selectMyCollection(Integer vid,Integer aid) {
-		return videoMapper.selectMyCollection(vid, aid);
+	public List<MyCollection> selectMyCollection(Integer vid,Integer aid,Integer uid) {
+		return videoMapper.selectMyCollection(vid, aid,uid);
 	}
 
 	@Override

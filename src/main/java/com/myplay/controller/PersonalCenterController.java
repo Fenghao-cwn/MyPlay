@@ -93,7 +93,7 @@ public class PersonalCenterController {
 			Video video =iVideoService.selectByPrimaryKey(collection.getVid());
 			if(video!=null){
 			//根据用户id、视频id、作者id查找返回一个自己封装的数组
-			List<MyCollection> mcollections= iVideoService.selectMyCollection(video.getId(), video.getUserid());
+			List<MyCollection> mcollections= iVideoService.selectMyCollection(video.getId(), video.getUserid(),u.getId());
 			for (MyCollection myCollection2 : mcollections) {
 				System.out.println(myCollection2.getVid()+myCollection2.getName());
 				myCollections.add(myCollection2);
@@ -150,7 +150,7 @@ public class PersonalCenterController {
 			//通过遍历收藏表，根据收藏表的视频id查找所以的视频
 			Video video =iVideoService.selectByPrimaryKey(collection.getVid());
 			//根据用户id、视频id、作者id查找返回一个自己封装的数组
-			List<MyCollection> mcollections= iVideoService.selectMyCollection(video.getId(), video.getUserid());
+			List<MyCollection> mcollections= iVideoService.selectMyCollection(video.getId(), video.getUserid(),aid);
 			for (MyCollection myCollection2 : mcollections) {
 				System.out.println(myCollection2.getVid()+myCollection2.getName());
 				myCollections.add(myCollection2);

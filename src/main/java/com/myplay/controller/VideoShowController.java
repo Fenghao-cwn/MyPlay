@@ -317,5 +317,42 @@ public class VideoShowController {
 		}
 		return "发送失败，请重新发送！";
 	}
+	/**
+	 * 在别人主页加载是否关注了该作者
+	 * @param toUid
+	 * @param session
+	 * @return
+	 */
+	@GetMapping("/loadFollow")
+	public String loadFollow(Integer toUid,HttpSession session){
+		User user = (User)session.getAttribute("user");
+		if(service.loadFollow(toUid,user.getId())!=0){
+			return "已关注";
+		}
+		return "关注";
+	}
 	
+	@PostMapping("/loadMyGood")
+	public String loadMyGood(Integer vid,HttpSession session){
+		User user = (User)session.getAttribute("user");
+		if(user!=null){
+			Boolean flag = redisTemplate.opsForSet().isMember(LIKE+SPLIT+vid, user.getId().toString());
+			if(flag){
+				return "存在";
+			}
+		}
+		return "不存在";
+	}
+	
+	@PostMapping("/loadMyBad")
+	public String loadMyBad(Integer vid,HttpSession session){
+		User user = (User)session.getAttribute("user");
+		if(user!=null){
+			Boolean flag = redisTemplate.opsForSet().isMember(DISLIKE+SPLIT+vid, user.getId().toString());
+			if(flag){
+				return "存在";
+			}
+		}
+		return "不存在";
+	}
 }

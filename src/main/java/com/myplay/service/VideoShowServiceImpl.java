@@ -150,4 +150,9 @@ public class VideoShowServiceImpl implements IVideoShowService{
 		videomapper.updateVideoCollectionnum(vid);
 	}
 
+	@Override
+	public int loadFollow(Integer toUid,Integer fromUid) {
+		return followmapper.loadFollow(toUid, fromUid);
+	}
+
 }
