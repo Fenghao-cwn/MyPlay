@@ -37,7 +37,12 @@ public class dynamicController {
 	    dynamicServiceImpl.insert(dynamic);	
 	}
 	@GetMapping("/dynamic")
-	public List<dynamicAndUser> selectdynamibycuser(Integer id){
+	public List<dynamicAndUser> selectdynamibycuser(HttpSession session){
+		User u = (User)session.getAttribute("user");
+		Integer id=1;
+		if(u!=null){
+			id = u.getId();
+		}
 		return dynamicServiceImpl.selectdynamibycuser(id);
 	}
 }
