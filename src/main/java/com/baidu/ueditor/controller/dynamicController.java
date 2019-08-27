@@ -26,7 +26,7 @@ public class dynamicController {
 	DynamicServiceImpl dynamicServiceImpl;
 	@PostMapping("/dynamic")
 	public void insert(String content,HttpSession session) {	
-		User u = (User)session.getAttribute("uu");
+		User u = (User)session.getAttribute("user");
 	    Dynamic dynamic =	new Dynamic();
 	    dynamic.setContent(content);
 	    dynamic.setUid(u.getId());
