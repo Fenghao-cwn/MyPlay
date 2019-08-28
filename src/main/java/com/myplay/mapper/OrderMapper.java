@@ -6,9 +6,9 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface OrderMapper {
-    int deleteByPrimaryKey(Integer id);
+    void deleteByPrimaryKey(Integer id);
 
-    int insert(Order record);
+    void insert(Order order);
 
     Order selectByPrimaryKey(Integer id);
 
