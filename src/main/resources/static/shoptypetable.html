@@ -100,7 +100,7 @@
         	$.each(result,function(index,shoptype){
         		var typecode = $("<td></td>").append(index+1);
         		var shoptypename = $("<td></td>").append(shoptype.typeName);
-        		var operation = $("<td></td>").append($("<button></button>").append("删除").attr("name", shoptype.id).addClass("addBtn"));
+        		var operation = $("<td></td>").append($("<button></button>").append("删除").attr("name", shoptype.id).addClass("addBtn layui-btn layui-btn-sm layui-btn-danger"));
         		$("<tr></tr>").append(typecode).append(shoptypename).append(operation)
         		.appendTo("#shoptypetable tbody"); 
         	});

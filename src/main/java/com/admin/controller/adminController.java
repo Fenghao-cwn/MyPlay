@@ -22,6 +22,7 @@ import com.myplay.model.AdminData;
 import com.myplay.model.Category;
 import com.myplay.model.Goods;
 import com.myplay.model.GoodsType;
+import com.myplay.model.SysNotice;
 import com.myplay.model.User;
 import com.myplay.model.Video;
 
@@ -36,7 +37,7 @@ public class adminController {
     @ResponseBody
     @RequestMapping("/getvideolist")
     public AdminData getVideoList(Model model,@RequestParam(defaultValue="1",value="currentpage",required=false) Integer  currentpage){
-        PageHelper.startPage(currentpage, 5);
+        PageHelper.startPage(currentpage, 3);
         System.out.println(currentpage);
         List<Video> videoList = adminservice.getVideoList();
         PageInfo<Video> pageinfo = new PageInfo<Video>(videoList);
@@ -59,7 +60,7 @@ public class adminController {
     @RequestMapping("/search")
     public AdminData searchByWord(String searchword,@RequestParam(defaultValue="1",value="currentpage",required=false) Integer  currentpage){
         System.out.println(currentpage+searchword);
-        PageHelper.startPage(currentpage, 5);
+        PageHelper.startPage(currentpage, 3);
         List<Video> videoList = adminservice.searchByWord(searchword);
         PageInfo<Video> pageinfo = new PageInfo<Video>(videoList);
         return AdminData.success().add("pageinfo", pageinfo);
@@ -94,7 +95,7 @@ public class adminController {
     @ResponseBody
     @RequestMapping("/searchbycategory")
     public AdminData searchByCategory(Integer categoryid,@RequestParam(defaultValue="1",value="currentpage",required=false) Integer  currentpage){
-        PageHelper.startPage(currentpage, 5);
+        PageHelper.startPage(currentpage, 3);
         List<Video> videoList = adminservice.searchByCategory(categoryid);
         PageInfo<Video> pageinfo = new PageInfo<Video>(videoList);
         return AdminData.success().add("pageinfo", pageinfo);
@@ -105,7 +106,7 @@ public class adminController {
     @ResponseBody
     @RequestMapping("/getshoplist")
     public AdminData getShopList(@RequestParam(defaultValue="1",value="currentpage",required=false) Integer  currentpage){
-        PageHelper.startPage(currentpage, 5);
+        PageHelper.startPage(currentpage, 3);
         System.out.println(currentpage);
         List<Goods> videoList = adminservice.getShopList();
         PageInfo<Goods> pageinfo = new PageInfo<Goods>(videoList);
@@ -135,7 +136,7 @@ public class adminController {
     @ResponseBody
     @RequestMapping("/searchbyshopcategory")
     public AdminData searchByShopCategory(Integer categoryid,@RequestParam(defaultValue="1",value="currentpage",required=false) Integer  currentpage){
-        PageHelper.startPage(currentpage, 5);
+        PageHelper.startPage(currentpage, 3);
         List<Goods> goodList = adminservice.searchByShopCategory(categoryid);
         PageInfo<Goods> pageinfo = new PageInfo<Goods>(goodList);
         return AdminData.success().add("pageinfo", pageinfo);
@@ -144,7 +145,7 @@ public class adminController {
     @ResponseBody
     @RequestMapping("/searchshop")
     public AdminData searchShopByWord(String searchword,@RequestParam(defaultValue="1",value="currentpage",required=false) Integer  currentpage){
-        PageHelper.startPage(currentpage, 5);
+        PageHelper.startPage(currentpage, 3);
         List<Goods> goodList = adminservice.searchShopByWord(searchword);
         PageInfo<Goods> pageinfo = new PageInfo<Goods>(goodList);
         return AdminData.success().add("pageinfo", pageinfo);
@@ -152,8 +153,23 @@ public class adminController {
     //编辑商品
     @ResponseBody
     @RequestMapping("/editshop")
-    public int editShop(Goods goods){
-        return adminservice.editShop(goods);
+    public int editShop(@RequestParam(value = "file", required = false) MultipartFile file,Goods goods){
+    	try {
+        	String uuid = UUID.randomUUID().toString().replace("-", "").toUpperCase();
+        	File newfile = new File("C:/SCJ/upload/"+uuid+file.getOriginalFilename());
+        	file.transferTo(newfile);
+        	//保存数据
+        	goods.setNum(1);
+        	goods.setPicture(file.getOriginalFilename());
+            int i = adminservice.editShop(goods);
+            if(i>0){
+            	return 1;
+            }
+        	
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+        return 0;
     }
     //删除商品
     @ResponseBody
@@ -174,23 +190,28 @@ public class adminController {
     //添加商品
     @ResponseBody
     @RequestMapping("/addshop")
-    public String addShop(@RequestParam(value = "picture", required = false) MultipartFile picture,Goods goods){
-    	System.out.println(goods.getName()+"  "+goods.getPrice()+"  "+goods.getTypeId()+"  "+goods.getIntroduce()+"  "+picture.getOriginalFilename());
+    public int addShop(@RequestParam(value = "file", required = false) MultipartFile file,Goods goods){
+    	System.out.println("Controller 。。。");
+    	System.out.println(goods.getName()+"  "+goods.getPrice()+"  "+goods.getTypeId()+"  "+goods.getIntroduce()+"  "+goods.getPicture());
+    	System.out.println(file.getOriginalFilename());
+    	
     	//上传图片
     	try {
-        	//String uuid = UUID.randomUUID().toString().replace("-", "").toUpperCase();
-        	File newfile = new File("C:/SCJ/upload/"+picture.getOriginalFilename());
-        	picture.transferTo(newfile);
+        	String uuid = UUID.randomUUID().toString().replace("-", "").toUpperCase();
+        	File newfile = new File("C:/SCJ/upload/"+uuid+file.getOriginalFilename());
+        	file.transferTo(newfile);
         	//保存数据
-           /* int i = adminservice.addGood(goods);*/
-           /* if(i>0){
-            	return "success";
-            }*/
-        	return "success";
-		} catch (IllegalStateException | IOException e) {
+        	goods.setNum(1);
+        	goods.setPicture(file.getOriginalFilename());
+            int i = adminservice.addGood(goods);
+            if(i>0){
+            	return 1;
+            }
+        	
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
-        return "添加失败";
+        return 0;
     }
     //通过ID查商品
     @ResponseBody
@@ -215,5 +236,14 @@ public class adminController {
     	}else{
     		return 0;
     	}
+    }
+    //管理员登录
+    @ResponseBody
+    @RequestMapping("/addsysnotice")
+    public int addSysNotice(SysNotice sysnotice){
+    	System.out.println(sysnotice.getTitle()+sysnotice.getCreateTime()+sysnotice.getContent());
+    	int i = adminservice.addSysNotice(sysnotice);
+    	return i;
+    	
     }
 }

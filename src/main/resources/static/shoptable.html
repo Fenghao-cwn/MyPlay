@@ -22,8 +22,8 @@
 	</fieldset>	
 	<div style="float: none; margin-bottom: 10px; height: 30px;">
 		<div style="float: left;">
-			<button type="button" id="addshopbtn">添加商品</button>
-			<button type="button" id="delall">批量删除</button>
+			<button type="button" id="addshopbtn" class="btn btn-primary">添加商品</button>
+			<button type="button" id="delall" class="btn btn-danger">批量删除</button>
 		</div>
 		<div class="col-lg-6" style="width: 200px;">
 			<div class="input-group">
@@ -51,7 +51,7 @@
 				<th style="">商品图片</th>
 				<th style="width: 150px;">商品价格</th>
 				<th style="width: 300px;">商品说明</th>
-				<th style="width: 150px;">商品类型</th>
+				<!-- <th style="width: 150px;">商品类型</th> -->
 				<th style="width: 200px;">操作</th>
 			</thead>
 			<tbody align="left">
@@ -223,24 +223,24 @@
 			var introduce = $("<td></td>").append(
 					shop.introduce).attr("id",
 					"introduce" + shop.id);
-			var typeId = $("<td></td>").append(shop.typeId)
+			/* var typeId = $("<td></td>").append(shop.typeId)
 					.attr("id", "typeId" + shop.id).attr(
-							"data-tid", shop.typeId);
+							"data-tid", shop.typeId); */
 
 			var operation = $("<td></td>")
 					.append(
 							$("<button></button>")
 									.append("编辑")
-									.addClass("layui-btn layui-btn-sm editbtn")
+									.addClass("btn btn-success editbtn")
 									.attr("name", shop.id))
 					.append(
 							$("<button></button>")
 									.append("删除")
-									.addClass("layui-btn layui-btn-sm layui-btn-danger delbtn")
+									.addClass("btn btn-danger delbtn")
 									.attr("name", shop.id));
 			$("<tr></tr>").append(checkbox).append(id).append(name).append(
 					picture).append(price).append(introduce)
-					.append(typeId).append(operation).appendTo(
+					.append(operation).appendTo(
 							"#shop_table tbody");
 		})
 	}

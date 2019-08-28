@@ -116,7 +116,7 @@
         	$.each(result,function(index,category){
         		var typecode = $("<td></td>").append(index+1);
         		var name = $("<td></td>").append(category.name);
-        		var operation = $("<td></td>").append($("<button></button>").append("删除").attr("name", category.id).addClass("addBtn"));
+        		var operation = $("<td></td>").append($("<button></button>").append("删除").attr("name", category.id).addClass("addBtn layui-btn layui-btn-sm layui-btn-danger"));
         		$("<tr></tr>").append(typecode).append(name).append(operation)
         		.appendTo("#categorytable tbody"); 
         	});

@@ -8,11 +8,13 @@ import org.springframework.stereotype.Service;
 import com.myplay.mapper.CategoryMapper;
 import com.myplay.mapper.GoodsMapper;
 import com.myplay.mapper.GoodsTypeMapper;
+import com.myplay.mapper.SysNoticeMapper;
 import com.myplay.mapper.UserMapper;
 import com.myplay.mapper.VideoMapper;
 import com.myplay.model.Category;
 import com.myplay.model.Goods;
 import com.myplay.model.GoodsType;
+import com.myplay.model.SysNotice;
 import com.myplay.model.User;
 import com.myplay.model.Video;
 
@@ -28,7 +30,8 @@ public class AdminService {
 	private GoodsTypeMapper goodstypemapper;
 	@Autowired
 	private UserMapper usermapper;
-	
+	@Autowired
+	private SysNoticeMapper sysnoticemapper ;
 	
 	public List<Video> getVideoList() {
 		return videomapper.selectAll();
@@ -111,6 +114,10 @@ public class AdminService {
 	//获取用户列表
 	public List<User> getUserList() {
 		return usermapper.selectAll();
+	}
+
+	public int addSysNotice(SysNotice sysnotice) {
+		return sysnoticemapper.insert(sysnotice);
 	}
 	
 }

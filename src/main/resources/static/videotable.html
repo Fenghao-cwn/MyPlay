@@ -6,7 +6,7 @@
 <link rel="stylesheet"
 	href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
 <script type="text/javascript"
-	src="../resource/bootstrap-3.3.7-dist/js/jquery-2.1.1.js"></script>
+	src="../resource/bootstrap/js/jquery-2.1.1.js"></script>
 <script
 	src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="resource/layui/css/layui.css">
@@ -62,7 +62,7 @@ td{
 				<th style="">视频内容</th>
 				<th style="width: 80px;">收藏量</th>
 				<!-- <th style="width: 80px;">上传者</th> -->
-				<th style="width: 80px;">视频类型</th>
+				<!-- <th style="width: 80px;">视频类型</th> -->
 				<th style="width: 100px;">上传时间</th>
 				<th style="width: 80px;">播放量</th>
 				<th style="width: 180px;">视频详情</th>
@@ -86,6 +86,7 @@ td{
 		<!-- </div> -->
 	
 
+
 </body>
 <script src="resource/layui/layui.js"></script>
 <script>
@@ -93,7 +94,7 @@ td{
 	layui.use([ 'element', 'table', 'form', 'jquery', 'layer' ],
 	function() {
 		var element = layui.element, table = layui.table, form = layui.form, $ = layui.$, layer = layui.layer;
-		$('#addshop').click(function() {
+/* 		$('#addshop').click(function() {
 			layer.open({
 						type : 2,
 						title : '视频预览',
@@ -105,7 +106,7 @@ td{
 						content : '//player.youku.com/embed/XMjY3MzgzODg0'
 
 					});
-		});
+		}); */
 		$('#submit').click(function() {
 			console.log("nihao")
 		});
@@ -155,16 +156,17 @@ td{
 
 		
 		$(document).on("click",".view",function(){
+			var src = $(this).prop("name")
 			layer.open({
-				  type: 2,
-				  title: false,
-				  area: ['630px', '360px'],
-				  shade: 0.8,
-				  closeBtn: 0,
-				  shadeClose: true,
-				  content: $(this).prop("name")
-				});
-			//layer.msg($(this).prop("name"), {icon: 2});
+			  title: "视频预览",
+			  type: 1,
+			  skin: 'layui-layer-rim', //加上边框
+			  area: ['500px', '380px'], //宽高
+			  content: 
+				  `
+				  <div><video style="height: 310px;width: 480px" controls="controls" src="${$(this).prop("name")}"></video></div>
+                  `
+			});
 		});
 		
 		
@@ -199,14 +201,14 @@ td{
 		$.each(productlist, function(index, video) {
 			var id = $("<td></td>").append(index+(result.data.pageinfo.pageNum-1)*result.data.pageinfo.pageSize+1).addClass("td");
 			var title = $("<td></td>").append(video.title);
-			var photourl = $("<td></td>").css("padding","0").append($("<img />").attr("src",video.photourl));
+			var photourl = $("<td></td>").css("padding","0").css("height","79px").append($("<img />").attr("src",video.photourl).css("height","100%").css("width","100%"));
 			var videourl = $("<td></td>").append($("<a></a>").attr("href","javascript:;").append("点击预览").addClass("view").attr("name",video.videourl));
 			var collectioncount = $("<td></td>").append(
 					video.collectioncount);
 			/* var userid = $("<td></td>")
 					.append(video.userid).addClass("usertr").add("id","usertrid"+video.id); */
-			var categoryid = $("<td></td>").append(
-					video.categoryid);
+			/* var categoryid = $("<td></td>").append(
+					video.categoryid); */
 			var createtime = $("<td></td>").append(
 					video.createtime);
 			var showcount = $("<td></td>").append(
@@ -231,8 +233,7 @@ td{
 											  .attr("name",video.id));
 			$("<tr></tr>").append(id).append(title).append(
 					photourl).append(videourl).append(
-					collectioncount).append(
-					categoryid).append(createtime).append(
+					collectioncount).append(createtime).append(
 					showcount).append(vediodetail).append(
 					average).append(status).append(operation)
 					.appendTo("#product_table tbody");

@@ -3,6 +3,9 @@ package com.myplay.mapper;
 import com.myplay.model.SysNotice;
 import java.util.List;
 
+import org.apache.ibatis.annotations.Mapper;
+
+@Mapper
 public interface SysNoticeMapper {
     int deleteByPrimaryKey(Integer id);
 
