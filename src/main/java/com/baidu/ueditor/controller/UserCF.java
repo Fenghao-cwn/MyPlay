@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.myplay.mapper.MarkMapper;
 import com.myplay.model.User;
 import com.myplay.model.Video;
 import com.myplay.service.CategoryServiceImpl;
@@ -32,31 +33,40 @@ public class UserCF {
 	
 	@Autowired
 	private CategoryServiceImpl  categoryServiceImpl;
+	@Autowired
+	private MarkMapper markMapper;
 	@GetMapping("/recom")
 	public List recom(HttpSession session) throws Exception, TasteException {
-
-		String file = "src/data/testCF.csv";
-		DataModel model = new FileDataModel(new File(file));// 数据模型
+		User u = (User)session.getAttribute("user");
+		List<Video> videos = usercf(u);
+		return videos;
+	}
+	public List<Video> usercf(User u)throws Exception, TasteException{
+		String f = "D:\\upload\\a.csv";
+		File file = new File(f);
+		if (file.delete()) {
+			markMapper.outPutfile();
+		}
+		String fa = "D:\\upload\\a.csv";
+		File filea = new File(fa);
+		DataModel model = new FileDataModel(filea);// 数据模型
 		UserSimilarity user = new EuclideanDistanceSimilarity(model);// 用户相识度算法
 		NearestNUserNeighborhood neighbor = new NearestNUserNeighborhood(nei_num, user, model);
 		// 用户近邻算法
 		Recommender r = new GenericUserBasedRecommender(model, neighbor, user);// 用户推荐算法
-		User u = (User)session.getAttribute("uu");
-		int iter = 0;
+		int iter;
 		if(u!=null){
 			 iter = u.getId();
 		}else{
 			 iter = 1;
 		}
-		
-		//int iter = 1;/// 得到用户ID
 		List<RecommendedItem> list = r.recommend(iter, rec_num);
 		List<Video> videos = new ArrayList();
 		System.out.printf("uid:%s", iter);
 		for (RecommendedItem ritem : list) {
-			int MovieId = (int)ritem.getItemID();
+			int MovieId = (int)ritem.getItemID();			
 			Video v = categoryServiceImpl.selectByPrimaryKey(MovieId);
-			videos.add(v);
+			videos.add(v);		
 		}
 		return videos;
 	}

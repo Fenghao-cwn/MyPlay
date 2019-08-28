@@ -21,4 +21,6 @@ public interface MarkMapper {
     Float loadRate(Integer vid);
 
 	Float loadMark(@Param("id") Integer id,@Param("vid") Integer vid);
+
+	void outPutfile();
 }
