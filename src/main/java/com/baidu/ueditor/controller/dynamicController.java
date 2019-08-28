@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.myplay.mapper.UserMapper;
 import com.myplay.model.Dynamic;
 import com.myplay.model.User;
 import com.myplay.model.dynamicAndUser;
@@ -21,7 +22,9 @@ import com.myplay.service.DynamicServiceImpl;
 @RestController
 @RequestMapping("/dy")
 public class dynamicController {
-
+	@Autowired
+	private UserMapper usermapper;
+	
 	@Autowired
 	DynamicServiceImpl dynamicServiceImpl;
 	@PostMapping("/dynamic")
@@ -44,5 +47,9 @@ public class dynamicController {
 			id = u.getId();
 		}
 		return dynamicServiceImpl.selectdynamibycuser(id);
+	}
+	@GetMapping("dynamicuser")
+	public User dynamicByUser(Integer uid) {
+		return usermapper.selectByPrimaryKey(uid);
 	}
 }
