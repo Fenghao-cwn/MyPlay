@@ -6,8 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.myplay.mapper.MessageMapper;
+import com.myplay.mapper.SysNoticeMapper;
 import com.myplay.model.LetterBox;
-import com.myplay.model.Message;
+import com.myplay.model.SysNotice;
 
 @Service
 public class MessageServiceImpl implements IMessageService{
@@ -15,6 +16,9 @@ public class MessageServiceImpl implements IMessageService{
 	@Autowired
 	public MessageMapper messageMapper;
 
+	@Autowired
+	public SysNoticeMapper sysNoticeMapper;
+	
 	@Override
 	public List<LetterBox> getInboxs(Integer id) {
 		// TODO Auto-generated method stub
@@ -54,6 +58,13 @@ public class MessageServiceImpl implements IMessageService{
 	public int inboxnolook(Integer id) {
 		// TODO Auto-generated method stub
 		return messageMapper.inboxnolook( id);
+	}
+
+
+	@Override
+	public List<SysNotice> selectAll() {
+		// TODO Auto-generated method stub
+		return sysNoticeMapper.selectAll();
 	}
 
 }

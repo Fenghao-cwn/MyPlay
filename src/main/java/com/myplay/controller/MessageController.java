@@ -11,8 +11,9 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.myplay.mapper.SysNoticeMapper;
 import com.myplay.model.LetterBox;
-import com.myplay.model.Message;
+import com.myplay.model.SysNotice;
 import com.myplay.model.User;
 import com.myplay.service.IMessageService;
 
@@ -23,6 +24,7 @@ public class MessageController {
 	
 	@Autowired
 	public IMessageService iMessageService;
+	
 	
 	@GetMapping("/inbox")
 	public List<LetterBox> inbox(HttpSession session){
@@ -63,6 +65,19 @@ public class MessageController {
 	@GetMapping("/inboxnolook")
 	public int inboxnolook(HttpSession session){
 		User user = (User)session.getAttribute("user");
-		return iMessageService.inboxnolook(user.getId());
+		int num = iMessageService.inboxnolook(user.getId());
+		/*if(num==null){
+			return 0;
+		}
+		else{
+			return num;
+		}*/
+		return num;
+	}
+	
+	@GetMapping("/getNotice")
+	public List<SysNotice> getNotice(){
+		 List<SysNotice> lists=iMessageService.selectAll();
+		return lists;
 	}
 }

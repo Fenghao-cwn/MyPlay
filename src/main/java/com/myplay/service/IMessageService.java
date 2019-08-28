@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.myplay.model.LetterBox;
 import com.myplay.model.Message;
+import com.myplay.model.SysNotice;
 
 public interface IMessageService {
 
@@ -17,6 +18,8 @@ public interface IMessageService {
 	int close(Integer id);
 	//已读
 	int look(Integer id);
-	//已读
+	//未读信息
 	int inboxnolook(Integer id);
+	//系统通知
+	List<SysNotice> selectAll();
 }
