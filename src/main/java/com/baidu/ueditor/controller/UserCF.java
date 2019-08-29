@@ -58,7 +58,7 @@ public class UserCF {
 		if(u!=null){
 			 iter = u.getId();
 		}else{
-			 iter = 1;
+			 iter = 2;
 		}
 		List<RecommendedItem> list = r.recommend(iter, rec_num);
 		List<Video> videos = new ArrayList();
