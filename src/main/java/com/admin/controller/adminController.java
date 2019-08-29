@@ -156,7 +156,7 @@ public class adminController {
     public int editShop(@RequestParam(value = "file", required = false) MultipartFile file,Goods goods){
     	try {
         	String uuid = UUID.randomUUID().toString().replace("-", "").toUpperCase();
-        	File newfile = new File("C:/SCJ/upload/"+uuid+file.getOriginalFilename());
+        	File newfile = new File("D:/upload/"+uuid+file.getOriginalFilename());
         	file.transferTo(newfile);
         	//保存数据
         	goods.setNum(1);
@@ -198,7 +198,7 @@ public class adminController {
     	//上传图片
     	try {
         	String uuid = UUID.randomUUID().toString().replace("-", "").toUpperCase();
-        	File newfile = new File("C:/SCJ/upload/"+uuid+file.getOriginalFilename());
+        	File newfile = new File("D:/upload/"+uuid+file.getOriginalFilename());
         	file.transferTo(newfile);
         	//保存数据
         	goods.setNum(1);
