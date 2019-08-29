@@ -202,7 +202,7 @@ public class adminController {
         	file.transferTo(newfile);
         	//保存数据
         	goods.setNum(1);
-        	goods.setPicture(file.getOriginalFilename());
+        	goods.setPicture("http://localhost/"+file.getOriginalFilename());
             int i = adminservice.addGood(goods);
             if(i>0){
             	return 1;
