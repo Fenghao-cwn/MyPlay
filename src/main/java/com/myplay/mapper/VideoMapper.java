@@ -45,4 +45,6 @@ public interface VideoMapper {
 	void updateVideoCount(int id);
 
 	void updateVideoCollectionnum(Integer vid);
+
+	 List<Video>  selectByvivwcount();
 }

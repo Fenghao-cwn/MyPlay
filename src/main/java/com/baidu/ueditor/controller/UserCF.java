@@ -68,6 +68,13 @@ public class UserCF {
 			Video v = categoryServiceImpl.selectByPrimaryKey(MovieId);
 			videos.add(v);		
 		}
-		return videos;
+		if(null == list || list.isEmpty()){
+			videos = categoryServiceImpl.selectByvivwcount();			
+			return videos;
+			
+		}else{
+			return videos;
+		}
+		
 	}
 }

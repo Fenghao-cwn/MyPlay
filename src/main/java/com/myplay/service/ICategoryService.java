@@ -15,4 +15,6 @@ public interface ICategoryService {
 
 	List<Video> selectAllVideo();
 
+	List<Video> selectByvivwcount();
+
 }

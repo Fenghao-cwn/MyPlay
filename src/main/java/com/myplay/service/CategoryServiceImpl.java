@@ -38,5 +38,10 @@ public class CategoryServiceImpl implements ICategoryService {
 		// TODO Auto-generated method stub
 		return videoMapper.selectAll();
 	}
+	@Override
+	public List<Video> selectByvivwcount() {
+		// TODO Auto-generated method stub
+		return videoMapper.selectByvivwcount();
+	}
 	
 }
