@@ -49,10 +49,10 @@
 		resultType="com.myplay.model.dynamicAndUser">
 		select
 		t.id,t.t.title,t.createtime,t.uid,t.content,t.id_u,t.name,t.sex,
-		t.signature,t.phone from
+		t.signature,t.photourl,t.phone from
 		(select d.id,d.title,d.createtime,
 		d.uid,d.content,u.id id_u,u.name,
-		u.sex,u.signature,u.phone from dynamic d,user u
+		u.sex,u.signature,u.photourl,u.phone from dynamic d,user u
 		where d.uid=u.id)
 		t,follow f where f.from_uid=#{to_id}
 		and f.to_uid =t.uid
