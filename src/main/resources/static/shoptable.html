@@ -635,7 +635,7 @@
 		var idstying = "";
 		$.each($(".check_item:checked"),function(){
 			names += $(this).parents("tr").find("td:eq(2)").text();
-			idstying += $(this).parents("tr").find("td:eq(7)").children("button:eq(0)").prop("name")+"-";
+			idstying += $(this).parents("tr").find("td:eq(6)").children("button:eq(1)").prop("name")+"-";
 		});
 		idstying = idstying.substring(0,idstying.length-1);
 		if(confirm("确认删除【"+names+"】么")){

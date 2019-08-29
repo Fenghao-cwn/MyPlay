@@ -11,7 +11,7 @@ import com.myplay.model.VideoAuthor;
 @Mapper
 public interface VideoMapper {
 	List<Video> selectAll();
-	
+	List<Video> selectAllDesc();
     int deleteByPrimaryKey(Integer id);
 
     int insert(Video record);

@@ -94,7 +94,12 @@
 		createTime, showcount, vediodetail, average
 		from video where status =1
 	</select>
-
+	<!-- 倒叙视频列表展示 -->
+  	<select id="selectAllDesc" resultMap="BaseResultMap">
+  		select id, title, photourl, videourl, collectioncount, userid, categoryid, status, 
+    	createTime, showcount, vediodetail, average
+    	from video ORDER BY id desc
+  	</select>
 	<select id="recommend" resultType="com.myplay.model.VideoAuthor">
 		select v.id vid, u.id aid,title, v.photourl, videourl, collectioncount,
 		userid, categoryid, status,

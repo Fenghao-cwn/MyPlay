@@ -34,7 +34,7 @@ public class AdminService {
 	private SysNoticeMapper sysnoticemapper ;
 	
 	public List<Video> getVideoList() {
-		return videomapper.selectAll();
+		return videomapper.selectAllDesc();
 	}
 
 	public int pass(Integer videoid) {
