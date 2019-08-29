@@ -32,5 +32,6 @@
   <select id="selectAll" resultMap="BaseResultMap">
     select id, title, content, create_time
     from sys_notice
+    ORDER BY create_time DESC
   </select>
 </mapper>
