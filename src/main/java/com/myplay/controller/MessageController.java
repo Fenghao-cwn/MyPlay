@@ -29,14 +29,25 @@ public class MessageController {
 	@GetMapping("/inbox")
 	public List<LetterBox> inbox(HttpSession session){
 		User user = (User)session.getAttribute("user");
-		return iMessageService.getInboxs(user.getId());
+		if(user==null){
+			return null;
+		}
+		else{
+			return iMessageService.getInboxs(user.getId());
+			}
+		
 	} 
 
 	@GetMapping("/outbox")
 	public List<LetterBox> outbox(HttpSession session){
 		System.out.println("==outbox==");
 		User user = (User)session.getAttribute("user");
-		return iMessageService.getOutboxs(user.getId());
+		if(user==null){
+			return null;
+		}else{
+			return iMessageService.getOutboxs(user.getId());
+		}
+		
 	}
 	
 	@GetMapping("/getMessageById")
@@ -65,19 +76,26 @@ public class MessageController {
 	@GetMapping("/inboxnolook")
 	public int inboxnolook(HttpSession session){
 		User user = (User)session.getAttribute("user");
-		int num = iMessageService.inboxnolook(user.getId());
-		/*if(num==null){
+		if(user==null){
 			return 0;
 		}
 		else{
+			int num = iMessageService.inboxnolook(user.getId());
+			
 			return num;
-		}*/
-		return num;
+		}
+		
 	}
 	
 	@GetMapping("/getNotice")
-	public List<SysNotice> getNotice(){
-		 List<SysNotice> lists=iMessageService.selectAll();
-		return lists;
+	public List<SysNotice> getNotice(HttpSession session){
+		User user = (User)session.getAttribute("user");
+		if(user==null){
+			 return null;
+		}else{
+			List<SysNotice> lists=iMessageService.selectAll();
+			return lists;
+		}
+		
 	}
 }
