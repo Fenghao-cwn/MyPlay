@@ -40,15 +40,13 @@ td{
 			<!-- 内容区域 -->
 	<div style="margin-bottom: 10px; height: 30px;">
 		<div class="col-lg-6" style="width: 200px;">
-			<div class="input-group">
+			<div class="input-group" style="float: left;">
 				<input type="text" class="form-control" value="" id="searchinput" placeholder="Search for..."> 
 				<span class="input-group-btn">
 					<button class="btn btn-default" id="searchbtn" type="button" onclick="getvalue()">Go!</button>
 				</span>
 			</div>
 		</div>
-		<!-- <button style="float: left;" type="button" id="addshop" class="layui-btn layui-btn-sm"><i
-                      class="layui-icon layui-icon-add-1"></i> 添加商品</button> -->
 		<div style="float: left; width: 150px;overflow: auto;">
 			<select class="form-control" style="height: 34px;" id="categorylist"></select>
 		</div>
@@ -59,16 +57,16 @@ td{
 				<th style="width: 60px;">编号</th>
 				<th style="width: 180px;">视频标题</th>
 				<th style="width: 120px;">视频封面</th>
-				<th style="">视频内容</th>
+				<th style="width: 80px">视频内容</th>
 				<th style="width: 80px;">收藏量</th>
 				<!-- <th style="width: 80px;">上传者</th> -->
 				<!-- <th style="width: 80px;">视频类型</th> -->
 				<th style="width: 100px;">上传时间</th>
 				<th style="width: 80px;">播放量</th>
-				<th style="width: 180px;">视频详情</th>
+				<th >视频详情</th>
 				<th style="width: 50px;">评分</th>
 				<th style="width: 80px;">审核状态</th>
-				<th style="width: 150px;">操作</th>
+				<th style="width: 120px;">操作</th>
 			</thead>
 			<tbody align="left">
 
@@ -193,7 +191,7 @@ td{
 			}
 
 		});
-	}
+	}i
 	
 	function maketbody(result) {
 		$("#product_table tbody").empty();
