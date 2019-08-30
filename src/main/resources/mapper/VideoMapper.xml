@@ -69,7 +69,7 @@
 		from video
 		where status = 1
 		order by
-		showcount ASC limit 3 ;
+		showcount desc limit 3 ;
 	</select>
 	<!-- 通过userid查找所以视频 -->
 	<select id="selectVideosByUid" parameterType="java.lang.Integer"
