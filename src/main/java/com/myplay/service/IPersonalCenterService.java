@@ -36,6 +36,8 @@ public interface IPersonalCenterService {
 	    
 	    int updateByPrimaryKey(User record);
 	    
+	    int updateByKey(User record);
+	    
 	    Integer deleteByPrimaryKey(Integer id);//删除关注
 		
 	    

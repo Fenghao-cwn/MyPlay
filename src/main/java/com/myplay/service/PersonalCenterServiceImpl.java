@@ -104,4 +104,10 @@ public class PersonalCenterServiceImpl implements IPersonalCenterService{
 		return dynamicCommentMapper.deleteDynamicComment(id);
 	}
 
+	@Override
+	public int updateByKey(User record) {
+		// TODO Auto-generated method stub
+		return userMapper.updateByKey(record);
+	}
+
 }

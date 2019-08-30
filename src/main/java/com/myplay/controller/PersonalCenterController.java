@@ -8,6 +8,7 @@ import java.util.UUID;
 
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -17,7 +18,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.myplay.mapper.UserMapper;
 import com.myplay.model.Collection;
 import com.myplay.model.Dynamic;
 import com.myplay.model.Follow;
@@ -48,12 +48,12 @@ public class PersonalCenterController {
 		return iPersonalCenterService.selectByPrimaryKey(user.getId());
 	}
 	/**
-	 * 更改个人信息
+	 * 更改个人信息 value="file",required=false实现参数是空的时候参数值为空
 	 * @param files
 	 * @param user
 	 */
 	@RequestMapping("/updateUser")
-	public void updateUser(@RequestParam("file") MultipartFile file,User user,HttpSession session){
+	public void updateUser(@RequestParam(value="file",required=false) MultipartFile file,User user,HttpSession session){
 		User u=(User) session.getAttribute("user");
 		user.setId(u.getId());
 		if(file!=null){
@@ -74,6 +74,8 @@ public class PersonalCenterController {
 				e.printStackTrace();
 			}
 			iPersonalCenterService.updateByPrimaryKey(user);
+		}else{
+			iPersonalCenterService.updateByKey(user);
 		}
 		
 	}
