@@ -33,13 +33,14 @@ public class GoodsController {
 	private IGoodsService goods;
 
 	@GetMapping("/select")
-	public PageInfo selectAll(@RequestParam(value="pageNum",defaultValue="1") Integer pageNum,@RequestParam(value="typeId") Integer typeId) {
-		System.out.println("pageNum:"+pageNum+"typeId:"+typeId);
-		PageHelper.startPage(pageNum,Commons.goods_num);
+	public PageInfo selectAll(@RequestParam(value = "pageNum", defaultValue = "1") Integer pageNum,
+			@RequestParam(value = "typeId") Integer typeId) {
+		System.out.println("pageNum:" + pageNum + "typeId:" + typeId);
+		PageHelper.startPage(pageNum, Commons.goods_num);
 		List<Goods> allGoods = goods.selectAllGoodsByType(typeId);
 		PageInfo pages = new PageInfo<>(allGoods);
 		return pages;
-		
+
 	}
 
 	@GetMapping("/selectById")
@@ -70,7 +71,28 @@ public class GoodsController {
 		while (it.hasNext()) {
 			list.add(cart.get(it.next()));
 		}
+		session.setAttribute("list", list);
 		System.out.println(cart);
+		return list;
+	}
+
+	@GetMapping("/remove")
+	public List remove(HttpSession session, Integer id) {
+
+		Map cart = (Map) session.getAttribute("cart");
+		cart.remove(id);
+		session.setAttribute("cart", cart);
+		List list = (List) session.getAttribute("list");
+
+		Iterator<Goods> iterator = list.iterator();
+		while (iterator.hasNext()) {
+			Goods cart_good = iterator.next();
+			if (cart_good.getId() == id) {
+				iterator.remove();
+			}
+		}
+		list.remove(goods);
+		session.setAttribute("list", list);
 		return list;
 	}
 
