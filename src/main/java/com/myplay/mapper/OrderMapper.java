@@ -12,7 +12,7 @@ public interface OrderMapper {
 
     Order selectByPrimaryKey(Integer id);
 
-    List<Order> selectAll();
+    List<Order> selectAll(int uid);
 
     int updateByPrimaryKey(Order record);
 }

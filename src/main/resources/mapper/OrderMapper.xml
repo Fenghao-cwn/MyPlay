@@ -39,8 +39,8 @@
     from goods_order
     where id = #{id,jdbcType=INTEGER}
   </select>
-  <select id="selectAll" resultMap="BaseResultMap">
+  <select id="selectAll" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select id, total_price, amount, status, time, uid, phone, name
-    from goods_order
+    from goods_order where uid = #{uid}
   </select>
 </mapper>

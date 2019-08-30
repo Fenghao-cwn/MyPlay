@@ -37,8 +37,10 @@ public class OrderController {
 	}
 	
 	@GetMapping("/selectAll")
-	public List<Order> selectOrders(){
-		return service.selectOrders();
+	public List<Order> selectOrders(HttpSession session){
+		User u= (User)session.getAttribute("user");
+		
+		return service.selectOrders(u.getId());
 	}
 	
 	@PostMapping("/selectById")

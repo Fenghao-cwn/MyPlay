@@ -32,9 +32,9 @@ public class OrderServiceImpl implements IOrderService {
 	}
 
 	@Override
-	public List<Order> selectOrders() {
+	public List<Order> selectOrders(int uid) {
 		// TODO Auto-generated method stub
-		return orderMapper.selectAll();
+		return orderMapper.selectAll(uid);
 	}
 
 	

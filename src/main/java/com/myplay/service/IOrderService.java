@@ -13,7 +13,7 @@ public interface IOrderService {
 
     Order selectByPrimaryKey(Integer id);
 
-    List<Order> selectOrders();
+    List<Order> selectOrders(int uid);
 
 	
 }
