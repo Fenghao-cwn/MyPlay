@@ -30,23 +30,32 @@ public class UserCF {
 
 	final static int nei_num = 3;// 临近的用户个数
 	final static int rec_num = 3;// 推荐物品的最大个数
-	
+
 	@Autowired
-	private CategoryServiceImpl  categoryServiceImpl;
+	private CategoryServiceImpl categoryServiceImpl;
 	@Autowired
 	private MarkMapper markMapper;
+
 	@GetMapping("/recom")
 	public List recom(HttpSession session) throws Exception, TasteException {
-		User u = (User)session.getAttribute("user");
+		User u = (User) session.getAttribute("user");
+		delnull();
 		List<Video> videos = usercf(u);
 		return videos;
 	}
-	public List<Video> usercf(User u)throws Exception, TasteException{
+
+	public int delnull() throws IOException {
 		String f = "D:\\upload\\a.csv";
 		File file = new File(f);
+		System.gc();
 		if (file.delete()) {
 			markMapper.outPutfile();
+			System.out.println("成功更新数据");
+			return 1;
 		}
+		return 0;
+	}
+	public List<Video> usercf(User u) throws Exception, TasteException {
 		String fa = "D:\\upload\\a.csv";
 		File filea = new File(fa);
 		DataModel model = new FileDataModel(filea);// 数据模型
@@ -55,26 +64,26 @@ public class UserCF {
 		// 用户近邻算法
 		Recommender r = new GenericUserBasedRecommender(model, neighbor, user);// 用户推荐算法
 		int iter;
-		if(u!=null){
-			 iter = u.getId();
-		}else{
-			 iter = 2;
+		if (u != null) {
+			iter = u.getId();
+		} else {
+			iter = 2;
 		}
 		List<RecommendedItem> list = r.recommend(iter, rec_num);
 		List<Video> videos = new ArrayList();
-		System.out.printf("uid:%s", iter);
+		// System.out.printf("uid:%s", iter);
 		for (RecommendedItem ritem : list) {
-			int MovieId = (int)ritem.getItemID();			
+			int MovieId = (int) ritem.getItemID();
 			Video v = categoryServiceImpl.selectByPrimaryKey(MovieId);
-			videos.add(v);		
+			videos.add(v);
 		}
-		if(null == list || list.isEmpty()){
-			videos = categoryServiceImpl.selectByvivwcount();			
+		if (null == list || list.isEmpty()) {
+			videos = categoryServiceImpl.selectByvivwcount();
 			return videos;
-			
-		}else{
+
+		} else {
 			return videos;
 		}
-		
+
 	}
 }
